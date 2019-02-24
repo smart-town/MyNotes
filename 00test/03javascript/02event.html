@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件测试</title>
+    <style>
+        .div1{
+            border: 1px solid black;
+            width: 60%;
+            height: 10rem;
+            margin: 0 auto;
+
+        }
+        .div1 .div2 {
+            border: 1px solid black;
+            width: 60%;
+            height: 60%;
+            margin: 0 auto;
+        }
+        .div1 .div2 .div3{
+            border: 1px solid black ;
+            width: 60%;
+            height: 60%;
+            margin: 0 auto;
+        }
+        #box {
+            background-color: lightblue;
+        }
+    
+        .in {
+            height: 30px
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <div class="div2"> 
+            <div class="div3">
+                OkkJune
+            </div>
+        </div>
+    </div>
+    <ul id="box">
+        <li class="in">1</li>
+        <li class="in">2</li>
+    </ul>
+    事件流：捕获阶段-触发阶段-冒泡阶段。在 DOM2Event 中。
+</body>
+<script>
+    box.onclick = function(e){
+        e = e || event;
+        e.target.style.backgroundColor = "pink";
+        console.log(e.currentTarget);
+        console.log(e.target) ;
+    }
+    box.onmouseout = function(e){
+        e = e || event;
+        e.target.style.backgroundColor = "lightblue";
+    }
+    var div1 = document.querySelector('.div1');
+    var div2 = document.querySelector('.div2');
+    var div3 = document.querySelector('.div3');
+    var flag1 = true;//修改此处三个条件可以看到捕获和冒泡的区别.true为捕获阶段触发
+    var flag2 = true;
+    var flag3 = false;
+    div1.addEventListener('click', test1, flag1) ;
+    div2.addEventListener('click', test2, flag2) ;
+    div3.addEventListener('click', test3, flag3) ;
+
+    // div1.addEventListener('click', test.bind('div1'), flag1) ;
+    // div2.addEventListener('click', test.bind('div2'), flag2) ;
+    // div3.addEventListener('click', test.bind('div3'), flag3) ;
+
+    function test(name){
+        alert("test - " + name);
+    }
+    function test1(event){
+        //event.stopPropagation() ;
+        if(div1.style.backgroundColor=="lightgreen"){
+            div1.style.backgroundColor = "white";
+        } else {
+            div1.style.backgroundColor="lightgreen";
+        };
+        alert("test1") ;
+    }
+    function test2(event){
+        //event.stopPropagation() ;
+        div2.style.backgroundColor="lightgray" ;
+        alert("test2") ;
+    }
+    function test3(event){
+        //event.stopPropagation() ;
+        div3.style.backgroundColor="lightblue" ;
+        alert("test3") ;
+    }
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>存储测试</title>
+
+    <style>
+        .myheader{
+            display: block;
+            width: 25%;
+            height: 50px;
+            margin: 10px auto;
+
+            border: 1px solid lightblue ;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+            border-radius: 25px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 30px;
+            font-family: "consolas";
+        }
+    </style>
+</head>
+<body>
+    <header class="myheader">Hello! Friends~</header>
+    <label for="getName">设置名称</label>
+    <input id="getName">
+    <button id="setName">?-?</button>
+
+    <script>
+        var name = localStorage.getItem("name") ;
+        var inputName = document.getElementById("getName") ;
+        var myheader = document.querySelector(".myheader") ;
+        var setName = document.querySelector("#setName") ;
+        
+        if(name != "null") {
+            myheader.innerHTML = "Hello! " + name;
+            setName.innerHTML = "O-O";
+        } else {
+            console.log("怕是第一次访问？");
+        }
+
+        setName.setAttribute("onclick", "mySetName()") ;
+        function mySetName(){
+            let name = inputName.value ;
+            if(name == "") {
+                alert("请输入名称呐！←_←") ;
+                return;
+            } 
+            if(name.length > 10){
+                alert("太长啦!=_=") ;
+                return;
+            }
+            localStorage.setItem("name", name) ;
+            myheader.innerHTML = "Hello! " + name;
+            setName.innerHTML = "^_^";
+        }
+    </script>
+</body>
+</html>

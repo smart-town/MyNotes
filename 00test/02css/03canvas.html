@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas-Test</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="300" height="300" class="myCanvas">
+        <p>Your browser don't support CANVAS!</p>
+    </canvas>
+
+    <script>
+        var canvas = document.querySelector(".myCanvas") ;
+        var width = canvas.width = window.innerWidth ;
+        var height = canvas.height = window.innerHeight ;
+
+        var ctx = canvas.getContext("2d") ;
+        ctx.fillStyle = "black" ;
+        ctx.fillRect(0, 0, width, height) ;
+
+        ctx.fillStyle = "rgba(255, 0, 0, 0.1)" ;
+        ctx.fillRect(25, 100, 175, 50) ;    
+
+        ctx.strokeStyle = "white" ;
+        ctx.lineWidth = 3;
+        ctx.strokeRect(0, 0, 50, 50) ;
+
+        ctx.fillStyle = "white" ;
+        ctx.beginPath() ;
+        ctx.moveTo(50,50) ;
+        ctx.lineTo(150,50) ;
+        var triHeight =  50 * Math.tan(degToRad(60)) ;
+        ctx.lineTo(100, 50+triHeight) ;
+        ctx.lineTo(50,50) ;
+        ctx.stroke();
+
+        
+        ctx.fillStyle = "blue" ;
+        ctx.beginPath() ;
+        ctx.arc(150,106,50,degToRad(0),degToRad(360),false) ;
+        ctx.stroke() ;
+
+        ctx.beginPath() ;
+        ctx.arc(500,500,40,degToRad(-45), degToRad(45), true) ;
+        ctx.lineTo(500,500);
+        ctx.lineWidth = 2;
+        ctx.stroke() ;
+
+        ctx.fillStyle = "blue" ;
+        ctx.strokeStyle = "rgb(255,0,255)";
+        ctx.beginPath() ;
+        ctx.arc(200, 106, 50, degToRad(-45), degToRad(45), true) ;
+        ctx.lineTo(200,106);
+        ctx.stroke() ;
+
+        ctx.moveTo(0, 300) ;
+        ctx.strokeStyle = "rgba(255,255,255,0.8)" ;
+        ctx.lineWidth = 1 ;
+        ctx.font = "50px consolas"
+        ctx.strokeText("Canvas StrokeText()", 0, 300) ;
+
+        ctx.fillStyle = "rgba(255,255,255,1)" ;
+        ctx.font = "80px georgia" ;
+        ctx.fillText("Cavas fillText()", 0, 380);
+
+        ctx.translate(width/2,height/2) ;
+        var length = 300;
+        var moveOffset = 20 ;
+
+        function degToRad(deg){
+            return deg * Math.PI / 180 ;
+        }
+        function rand(min, max){
+            return Math.floor(Math.random() * (max-min+1)) + (min) ;
+        }
+
+        for(var i = 0; i < length; i++) {
+            ctx.fillStyle = "rgba(" + (255-length) + ",0," + (255-length) + ",0.9)" ;
+            ctx.beginPath() ;
+            ctx.moveTo(moveOffset, moveOffset) ;
+            ctx.lineTo(moveOffset+length, moveOffset) ;
+            var triHeight = length/2 * Math.tan(degToRad(60)) ;
+            ctx.lineTo(moveOffset+(length/2), moveOffset+triHeight) ;
+            ctx.lineTo(moveOffset, moveOffset) ;
+            ctx.fill() ;
+
+            length--;
+            moveOffset += 0.7 ;
+            ctx.rotate(degToRad(5)) ;
+        }
+    </script>
+</body>
+</html>

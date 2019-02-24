@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KeyTest</title>
+</head>
+<body>
+    <details id="details1">
+        <summary>按键类型</summary>
+        keydown、keypress、keyup. 
+    </details>
+    <input id="testKey">
+
+    <script>
+        var d1 = document.querySelector("#details1") ;
+        d1.addEventListener("keydown", function(){alert("keyDown --- all keys")})
+        d1.addEventListener("keypress", function(){alert("keypress... character key")}) ;
+
+        var input = document.querySelector("#testKey") ;
+        input.addEventListener("keydown", function(e){
+            e = e || event;
+            // if(/[0-9]/.test(input.value)){
+            //     input.value = String(/\d*/.exec(input.value)) ;
+            // }
+            input.value="OKKJUNE";
+        })
+    </script>
+</body>
+</html>

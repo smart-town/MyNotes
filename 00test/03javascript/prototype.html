@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Js-继承</title>
+</head>
+<body>
+    js中的继承：原型继承。区别等？
+
+    <script>
+        //父类
+        function Person(name,gender){
+            this.name = name;
+            this.gender = gender ;
+            this.test = function(){console.log("测试原型链");}
+        }
+        Person.prototype.huxi = function(){console.log("person " + this.name +" can huxi");}
+
+        //原型测试，直接建立对象
+        var p1 = new Person("hhg","male") ;
+        p1.test() ;
+        p1.huxi() ;
+        
+        function Male(name, gender, musle){
+            Person.call(this, gender) ;
+            this.musle = musle;
+        }
+        
+    </script>
+</body>
+</html>

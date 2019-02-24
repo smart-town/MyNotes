@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animation</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body{
+            margin: 0;
+            height: 100%;
+            overflow: auto;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+            /* border: 5px solid lightblue; */
+        }
+
+        @keyframes myanimation {
+            0%{width: 50px; height: 50px; border-radius: 25px;}
+            25%{width: 60px; height: 60px; border-radius: 30px;}
+            50%{width: 70px; height: 70px; border-radius: 35px;}
+            75%{width: 60px; height: 60px; border-radius: 30px;}
+            100%{width: 50px; height: 50px; border-radius: 25px;}
+        }
+        #myanimation {
+            background:lightblue ;
+            width: 40px ;
+            height: 40px;
+            float: right;
+            margin: 1rem 1rem 0 0;
+            animation: myanimation 5s linear 0s infinite ;
+        }
+    </style>
+</head>
+<body>
+    <!-- OKKJUNE -->
+    <!-- <canvas class="myCanvas"></canvas> -->
+    <!-- <label>okkjune</label> -->
+    <div id="myanimation"></div>
+
+    <script>
+    //     var canvas1 = document.querySelector("canvas");
+    //     // console.log(canvas1) ;
+    //     // console.log(canvas1.children) ;
+
+    //     var canvas = document.querySelector(".myCanvas");
+    //     var width = canvas.width = window.innerWidth ;
+    //     var height = canvas.height = window.innerHeight ;
+    //     var ctx = canvas.getContext("2d") ;
+    //     ctx.fillStyle = "black" ;
+    //     ctx.fillRect(0, 0, width, height) ;
+
+    //     ctx.translate(width/2, height/2) ;
+
+    //     ctx.strokeStyle = "rgb("+randomColor()+","+randomColor()+","+randomColor()+")";
+    //     ctx.lineWidth = 1 ;
+    //     ctx.strokeRect(-40,-40,80,80) ;
+
+        
+    //     ctx.strokeStyle="rgb("+randomColor()+","+randomColor()+","+randomColor()+")";;
+    //     ctx.beginPath() ;
+    //     ctx.moveTo(-width, 0) ;
+    //     ctx.lineTo(width,0) ;
+    //     ctx.stroke();
+
+    //     function randomColor(){
+    //         return Math.random()*255;
+    //     }
+    //     function sleep(time){
+    //         var obj = time+new Date().getTime();
+    //         while(true){
+    //             if(obj < new Date().getTime()) {
+    //                 break ;
+    //             }
+    //         }
+    //     }
+
+    //     var i = 20, j = 20;
+    //     function loop(){
+    //         ctx.fillStyle = "black" ;
+    //         ctx.fillRect(0, 0, width, height) ;
+
+    //         ctx.fillStyle = "rgb("+randomColor()+","+randomColor()+","+randomColor()+")";
+    //         ctx.fillRect(0, 0, i, j) ;
+    //         i = Math.random()*40;
+    //         j = Math.random()*40;
+    //         sleep(500);
+    //         requestAnimationFrame(loop) ;
+    //     }
+    //    loop() ;
+    </script>
+</body>
+</html>

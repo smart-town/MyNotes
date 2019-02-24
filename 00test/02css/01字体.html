@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css字体相关测试</title>
+    <style>
+        @font-face{
+            font-family: 'myFont';
+            src: url("1942.ttf");
+        }
+        @font-face {
+            font-family: 'fontIcon';
+            src: url("fontawesome-webfont.woff")
+        }
+        h1 {
+            font-family: myFont;
+        }
+        .fontIcon{
+            font-family: fontIcon ;
+            color: lightgreen;
+        }
+        span.fontIcon::after{
+            font-family: fontIcon;
+        }
+        i::before{
+            font-family: fontIcon;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test About @font-face</h1>
+    <section>
+        <header title="应用到HTML中的字体可以使用font-family来控制但是这会让浏览器在所运行系统上找到才可以，因此出现了web安全自体的说法。但是有另外一种用法，web字体作为css的属性，允许你指定在访问时一起下载字体文件。即@font-face">测试css中的web字体</header>
+        <p>格式如下：
+            <code>@font-face{
+                font-family: "myFont";
+                src: url("myFont.ttf") ;    
+            }</code>
+            <br/>使用如下：
+            <code>html {font-family: "myFont"}</code>
+            <footer>
+                注意事项:浏览器支持不同的字体格式因此需要多种字体格式以获得良好的跨浏览器支持。如现在大多数现代浏览器都支持WOFF，它是最有效的格式。但是旧版本的ie只支持EOT。并且你可能需要一个包括SVG版本的字体支持旧版本的iPone和Android浏览器。字体一般都不能自由使用！
+            </footer>
+        </p>
+    </section>
+    <section>
+        <header>图标测试</header>
+        <span class="fontIcon">&#xf000;</span>
+        <span class="fontIcon">&#xf004;</span>
+        <i>nothing</i>
+    </section>
+</body>
+</html>

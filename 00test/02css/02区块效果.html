@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>区块效果</title>
+    <style>
+        div {
+            border: 1px solid black ;
+            width: 50%;
+            height: 200px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 200px;
+        }
+        .div1 {
+            background-image: url("castle1.gif");
+            background-repeat: no-repeat ;
+            background-position: 1em 1em;
+            background-size: 2.3em 2.3em;
+            margin-bottom: 5em;
+            box-shadow: 1em 1em 2em darkblue;
+
+            
+            text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
+        }
+        .div2 {
+            background: url("castle1.gif") no-repeat 1em 1em,
+                        linear-gradient(to bottom, lightgreen, skyblue) no-repeat;
+            box-shadow: 15px 15px 10px rgba(31, 30, 30, 0.7);
+            background-size: 20px 20px;
+        }
+
+        .button1 {
+            height: 1.5em;
+            width: 4.5em;
+            line-height: 1.5em;
+            margin-top: 60px;
+            box-shadow: inset 2px 2px 1px black,
+                        inset 2px 3px 5px rgba(0,0,0,0.3),
+                        inset -2px -3px 5px rgba(255,255,255,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">背景（图片）测试</div>
+    <div class="div2">阴影测试</div>
+    <div class="button1">内部阴影</div>
+</body>
+</html>

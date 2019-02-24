@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>浮动测试</title>
+    <style>
+        .span1 {
+            float: left;
+            border: 15px lightblue solid;
+            background: lightcyan ;
+        }
+        .span2 {
+            border: dashed blue 10px;
+            background: lightcoral ;
+            margin-left: -10px;
+        }
+        .span3 {
+            border-style:dotted;
+            border-color: lightblue ;
+            border-width: 10px;
+            background: purple ;
+            margin-top: -5px;
+            
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <details>
+        <summary>浮动测试</summary>
+        1. 特性： 浮动流、块级框、包裹性、破坏性
+        2. 重叠：行内框与浮动元素重叠，背景，边框，内容都在浮动元素之上；块框与浮动元素重叠则边框和背景都在浮动元素之下。只有内容在之上。
+    </details>
+    <span class="span1">这是浮动元素</span>
+    <span class="span2">这是普通的行内框</span><br/>
+    <span class="span3">这是块级的元素</span>
+</body>
+</html>

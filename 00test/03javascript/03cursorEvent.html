@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CursorEvent</title>
+    <style>
+        body {
+            border: 1px solid green;
+        }
+        h1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>鼠标事件测试</h1>
+    click、contextmenu、dbclick、mousedown、mouseup、mousemove、mouseover、mouseout、mouseenter、mouseleave
+
+    <script>
+        document.body.oncontextmenu = function(){
+            console.log("OKKJUNE") ;
+        }
+       /*  document.body.addEventListener("mousemove", function(){
+            console.log("===MOVE===");
+        }) */
+        document.body.onclick = positiontest;
+        document.querySelector("h1").onclick = positiontest ;
+
+        function positiontest(event){
+            var clientXY = event.clientX + "," + event.clientY ;
+            var screenXY = event.screenX + "," + event.screenY ;
+            var pageXY = event.pageX + "," + event.pageY ;
+            console.log(`${event.currentTarget.nodeName}:clientXY:${clientXY}--screenXY:${screenXY}--pageXY:${pageXY}`) ;
+        }
+    </script>
+</body>
+</html>
