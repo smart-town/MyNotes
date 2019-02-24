@@ -11,5 +11,15 @@
 
 #==========================================MINE
 *.class
+*/target/*
+
 .vscode/*
-*/node_modules/*
+**/node_modules/*
+
+#----seems eclipse----
+.project
+.classpath
+*.prefs
+
+#---maven---
+**/target/*
