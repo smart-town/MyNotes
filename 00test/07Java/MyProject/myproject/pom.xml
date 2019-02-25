@@ -66,5 +66,8 @@
   <modules>
     <module>test</module>
     <module>myfront</module>
+    <module>backstage</module>
+    <module>utils</module>
+    <module>repository</module>
   </modules>
 </project>
