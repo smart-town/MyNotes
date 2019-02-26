@@ -39,7 +39,6 @@ const element = React.createElement('h1','aa');
 `React.createElement()`会进行一些避免 bug 的检查，之后会返回一个类似下面的对象：
 
 ```js
-
 //注意石建华的
 const element = {
     type= "h1",

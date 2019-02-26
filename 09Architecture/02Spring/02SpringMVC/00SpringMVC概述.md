@@ -79,7 +79,7 @@ public class WebConfig extends WebMvcConfigureAdapter {
 }
 ```
 
-`@ComponentScan`扫描`spitter.web`包中的组件，`View Resolver` bean `Internal-ResourceViewResolver`，查找 JSP 文件，在查找时会在视图名称上增加一个特定的后缀和前缀。
+`@ComponentScan`扫描`spitter.web`包中的组件，` View Resolver` bean `Internal-ResourceViewResolver`，查找 JSP 文件，在查找时会在视图名称上增加一个特定的后缀和前缀。
 
 扩展了`WebMvcConfigureAdapter`并重写了对应方法，这里会要求`DispatcherServlet`将对静态资源的请求转发到 Servlet 容器中的默认 Servlet 上而非使用 `DispatcherServlet` 本身来处理此类请求。
 
