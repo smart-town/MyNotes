@@ -105,5 +105,7 @@ maven 使用`effetive pom`(`Super pom`+自己的配置)来执行相关目标。�
         </plugins>
     </pluginManagement>
 
+    <!-- 使用的插件列表 -->
+    <plugins/>
 </build>
 ```
