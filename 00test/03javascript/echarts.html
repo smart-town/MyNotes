@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>echarts-test</title>
+	<script src="./echarts.min.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#test {
+			position: absolute;
+			top: 300px;
+			bottom: 0;
+			background: lightblue;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:300px;"></div>
+	
+	<button onclick="test()">change</button>
+	<div id="test">
+		<input id="upload" type="file" accept="image/*;" capture="camera" >
+	
+	</div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = ({
+			legend: {
+					// orient: 'vertical',
+					// top: 'middle',
+					bottom: 10,
+					left: 'center',
+					data: ['视频广告', '联盟广告','邮件营销','直接访问','搜索引擎']
+				},
+			series : [
+				{
+					name: '访问来源',
+					type: 'pie',
+					radius: '55%',
+					data:[
+						{value:235, name:'视频广告',itemStyle:{color:"purple"},textStyle:{fontSize:"40px"}},
+						{value:274, name:'联盟广告'},
+						{value:310, name:'邮件营销'},
+						{value:335, name:'直接访问'},
+						{value:400, name:'搜索引擎'}
+					],
+					itemStyle: {
+						shadowBlur: 200,
+						shadowOffsetX: 0,
+						shadowOffsetY: 0,
+						shadowColor: 'rgba(0,0,0,0.5)'
+					},
+					label: {
+						textStyle: {
+							fontSize: '20px',
+							color: "purple",
+						},
+					},
+					labelLine: {
+						lineStyle: {
+							color: 'yellow',
+						}
+					},
+				}
+			],
+			textStyle : {
+				color: "brown",
+			}
+		})
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+		
+		function test(){
+			let option = {
+				legend: {},
+				tooltip: {},
+				dataset: {
+					// 这里指定了维度名的顺序，从而可以利用默认的维度到坐标轴的映射。
+					// 如果不指定 dimensions，也可以通过指定 series.encode 完成映射，参见后文。
+					dimensions: ['product', '2015', '2016', '2017'],
+					source: [
+						{product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7},
+						{product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1},
+						{product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5},
+						{product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1}
+					]
+				},
+				xAxis: {type: 'category'},
+				yAxis: {},
+				series: [
+					{type: 'bar'},
+					{type: 'bar'},
+					{type: 'bar'}
+				]
+			};
+			myChart.setOption(option);
+		}
+    </script>
+</body>
+
+</html>
