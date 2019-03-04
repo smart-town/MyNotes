@@ -145,4 +145,9 @@ Thymeleaf 给定了一些切实的承诺，它是原生的，不依赖于标签�
 - SpringTemplateEngine: 处理模板并渲染视图
 - TemplateResolver： 加载 Thymeleaf 模板
 
+[参考](https://blog.csdn.net/u014572215/article/details/78833095)
+
+涉及到`${}`表达式和`*{}`表达式，前者是变量表达式，一般来讲，它们是对象图导航语言表达式，但是在 Spring 中，它们是 SpEL 表达式如`${spiter}`会解析为`key`为`spitter`的 model 属性。而后者是选择表达式，选择表达式基于某个选中的对象进行计算。如选中对象`th:object`选择后，`*{firstName}`就会计算为所选中的对象的属性。
+
+
 
