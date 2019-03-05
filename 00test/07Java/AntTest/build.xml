@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<project name="HelloAnt" default="info">
+
+    <property name="author" value="smalltown"/>
+    <target name="info">
+        <echo>Hello Ant--First Ant Test</echo>
+        <echo>ant version:${ant.version}</echo>
+        <echo>author: ${author}</echo>
+    </target>
+</project>
