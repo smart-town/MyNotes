@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>testWebSocket</title>
+	<meta charset="utf-8"/>
+	<style>
+		.chatContent {
+			width: 40%;
+			height: 200px;
+			display: flex;
+			flex-direction: column;
+			overflow-y: scroll;
+		}
+		#chatContent {
+			border: 1px solid lightblue;
+			font-size: 1rem;
+			line-height: 1.3rem;
+			letter-spacing: 1px;
+			
+		}
+		#chatContent:disabled {
+			background: white;
+		}
+		.sender {
+			flex-shrink: 0;
+			align-self: flex-start;
+			background: lightblue;
+			border-radius: 5px;
+			padding: 0 6px;
+			margin-top: 5px;
+			margin-left: 6px;
+		}
+		.receiver {
+			flex-shrink: 0;
+			align-self: flex-end;
+			background: lightskyblue;
+			border-radius: 5px;
+			padding: 0 6px;
+			margin-top: 5px;
+			margin-right: 6px;
+		}
+	</style>
+</head>
+<body>
+	<div>连接状态:<span id="connectState">未连接</span><button id="resetConnection">重置</button></div>
+	<div class="chatContent" id="chatContent"><span class="sender">test</span><span class="receiver">test</span></div>
+	<label>输入内容:<input type="text" id="willSendMsgInfo"/></label><input type="submit" value="send" id="send"/>
+<script>
+	var url = "ws://"+"localhost:8080"+"/myfront/test01" ;
+	var statesContent = document.getElementById("connectState") ;
+	var resetConnection = document.getElementById("resetConnection") ;
+	var sendButton = document.getElementById("send") ;
+	var willSendMsgInfo = document.getElementById("willSendMsgInfo");
+	var chatContent = document.getElementById("chatContent") ;
+	resetConnection.addEventListener("click",getWebSocket);
+	sendButton.addEventListener("click",sendMsg) ;
+	
+	var sock = new WebSocket(url) ;
+	sock.onopen = openSock ;
+	sock.onclose = closeSock ;
+	function getWebSocket() {
+		if(sock.readyState !== 1){
+			console.log("0 尚未建立;1 已经建立; 2 正在关闭;3 已经关闭") ;
+			sock = new WebSocket(url) ;
+			sock.onopen = openSock ;
+			sock.onclose = closeSock ;
+		}
+	}
+	function receivedMsg(e){
+		console.log("get msg:",e.data) ;
+		appendServer(e.data);
+	}
+	function appendMe(msg){
+		
+		chatContent.appendChild(createMessage(msg,1));
+	}
+	function appendServer(msg){
+		chatContent.appendChild(createMessage(msg,0));
+	}
+	function createMessage(msg,flag){
+		let temp = document.createElement("span") ;
+		temp.innerText = msg ;
+		if(flag === 0){
+			temp.className="receiver" ;
+		} else {
+			temp.className="sender" ;
+		}
+		return temp;
+	}
+	
+	function sendMsg(){
+		console.log("will send message:",willSendMsgInfo.value);
+		if(sock.readyState === 1 && willSendMsgInfo.value != ""){
+			sock.send(willSendMsgInfo.value) ;
+			appendMe(willSendMsgInfo.value);
+		}
+	}
+	function openSock(){
+		console.log("socket connect success") ;
+		changeState("open") ;
+	}
+	function closeSock(){
+		console.log("Closing") ;
+		changeState("closed") ;
+	}
+	sock.onmessage = receivedMsg ;
+	
+	function changeState(flag){
+		if(flag === "open") {
+		    statesContent.innerHTML = "已连接";
+			statesContent.setAttribute("style","color: green") ;
+		} else {
+			statesContent.innerHTML = "未连接";
+			statesContent.setAttribute("style","color: red") ;
+		}
+	}
+</script>
+</body>
+</html>
