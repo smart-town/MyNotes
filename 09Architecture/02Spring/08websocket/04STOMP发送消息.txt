@@ -34,3 +34,7 @@ public Shout shoutHandle(Shout shout){...}
 
 按照类似的方式，`@SubscribeMapping`注解也可以发送消息，作为订阅的回应。不过`@SubscribeMapping`的区别在于消息会直接返回给客户端，而不必经过消息代理，但是如果增加`@SendTo`的时候，那么消息会发送到指定目的地，会经过代理。
 
+## 在应用的任意地方发送消息
+
+`@MessageMapping`和`@SubscribeMapping`提供了一种简单的方式来发送消息，这是接收消息或者处理订阅的附带结果，不过，Spring 的`SimpMessagingTemplate`能够在应用的任意地方发送消息甚至不必以首先接收一条消息作为前提。
+
