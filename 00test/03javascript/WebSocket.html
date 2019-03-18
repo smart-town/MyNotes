@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test Web Socket</title>
+</head>
+<body>
+    Check console.
+<script>
+    // var url = "ws://" + window.location.host + "/websocket/test01" ;
+    var url = "ws://localhost:8080/myfront/test01";
+    var sock = new WebSocket(url) ;
+    sock.onopen = function(){
+        console.log("Opening") ;
+        sayHello() ;
+    }
+    sock.onmessage = function(e){
+        console.log("Get Message:", e.data) ;
+        setTimeout(function(){sayHello();}, 2000) ;
+    }
+    sock.onclose = function(){
+        console.log("Closing") ;
+    }
+
+    function sayHello(){
+        console.log("Sending message") ;
+        sock.send("Hello!") ;
+    }
+</script>
+</body>
+</html>

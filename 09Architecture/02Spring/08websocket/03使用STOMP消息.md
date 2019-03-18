@@ -21,3 +21,55 @@ STOMP 帧中最有意思的地方恐怕就是 destination 头信息了，它表�
 
 Spring 为 STOMP 消息提供了基于 Spring MVC 的编程模型。可以看到在 Spring MVC 控制器中处理 STOMP 消息和处理 HTTP 请求没有太大差别。但是首先需要配置 Spring 启用 STOMP 消息。
 
+## 启用 STOMP 功能
+
+在 SpringMVC 的控制器中添加`@MessageMapping`方法，使其能够处理 STOMP 消息，与带有`@RequestMapping`的处理HTTP请求的方法非常类似。不同之处在于，`@MessageMapping`不能通过`@EnableWebMvc`启用，Spring 的 Web 消息功能基于消息代理(message broker)构建，因此除了告诉 Spring 我们想要处理消息外，还有其他的内容配置：
+```java
+@Configuration
+@EnableWebSocketMessageBroker
+public class WebSocketStompConfig extends AbstractWebSocketMessageBrokerConfigurer {
+    @Override
+    public void registerStompEndpoints(StopmEndpointResitry registry){
+        registry.addEndpoint("/marcopolo").withSockJS() ;
+    }
+
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry registry){
+        registry.enableSimpleBroker("/queue","/topic") ;
+        registry.setApplicationDestinationPrefixes("/app") ;
+    }
+}
+```
+
+这里使用`@EnableWebSocketMessageBroker`注解，表明这个配置类不仅配置了 WebSocket，而且还配置了基于代理的 STOMP 消息。它重载了 `registerStompEndpoints()`方法，将`/marcopolo`注册为 STOMP ，这个路径与之前发送和接收消息的目的地路径有所不同，**这是一个端点，客户端在订阅或者发布消息到目的地路径之前，要连接该端点**。
+
+WebSocketStopmConfig 还通过重载 configureMessageBroker() 方法配置了一个简单的消息代理，这个方法是可选的，如果不重载它的话，将会自动配置一个简单的内存消息代理，用它来处理以`/topic`为前缀的消息。不过在上面的例子中，重载了该方法，所以消息代理将能够处理前缀为`/topic`和`/queue`的消息。除此之外，发往程序的消息将会带有`/app`前缀。
+
+**当消息到达时，目的地的前缀将会决定消息该如何处理。应用程序的目的地以`/app`为前缀，而代理的目的地以`/topic`和`/queue`为前缀，以应用程序为目的地的消息将会直接路由到带有`@MessageMapping`注解的控制器方法中。而发送到代理的消息，其中也包括`@MessageMapping`注解方法的返回值所形成的消息，将会路由到代理上，并最终发送到订阅这些目的地的客户端。**
+
+### 启用 STOPM 代理中继
+
+对于初学者来说，简单地代理是很不错的。但是它有一些限制，尽管它模拟了 STOMP 消息代理，但是它只支持 STOPM 命令的子集。因为它是基于内存的，所以它并不适合集群，因为如果集群的话，每个节点也只能管理自己的代理和自己的那部分消息。
+
+对于生产环境下的应用来说，你可能会希望使用真正支持 STOMP 的代理来支撑 WebSocket 消息，如 RabbitMQ 或 ActiveMQ，这样的代理提供了可扩展性和健壮性更好的消息功能，当然它们也会完整支持 STOMP 命令，我们需要根据相关的文档来为 STOMP 搭建代理，搭建就绪之后就可以使用 STOMP 代理替换内存代理了:
+```Java
+@Override
+public void configureMessageBroker(MessageBrokerRegistry registry){
+    registry.enableStompBrokerRelay("/topic","/queue") ;
+    registry.setApplicationDestinationPrefixes("/app") ;
+}
+```
+
+默认情况下，STOMP 代理中继会假设代理监听 localhost 的 61613 端口，并且客户端的 username 和 password 均为"guest"，如果你的 STOMP 代理位于其他服务器上，或者配置了不同的客户端凭证，那么可以在启用 STOMP 代理中继的时候，配置需要的细节：
+```java
+@Override
+public void configureMessageBroer(MessageBrokerRegistry registry){
+    registry.enableStopBrokerReplay("/topic","/queue")
+        .setRelayHost("rabbit.othersite")
+        .setRelayPort(62623)
+        .setClientLogin("marcopl")
+        .setClientPasscode("let") ;
+    registry.setApplicationDestinationPrefixes("/app","/foo") ;
+}
+```
+
