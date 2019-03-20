@@ -1,0 +1,25 @@
+task hello {
+    doLast {
+        4.times {println "Hello gradle $it"}
+    }
+}
+
+task intro(dependsOn:hello) {
+    doLast {
+        println "it is intro task";
+    }
+}
+
+hello.doFirst {
+    println "hello do first..";
+}
+
+intro.doLast {
+    println "*****测试自定义属性******"
+    println "$myProperty.name :$myProperty.myProperty"
+    println myProperty.myProperty
+}
+
+task myProperty {
+    ext.myProperty = "Cherry" ;
+}
