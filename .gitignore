@@ -25,3 +25,5 @@
 **/target/*
 
 .gradle
+build
+ui
