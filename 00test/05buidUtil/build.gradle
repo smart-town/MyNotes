@@ -1,3 +1,5 @@
+defaultTasks 'hello'
+
 task hello {
     doLast {
         4.times {println "Hello gradle $it"}
@@ -23,3 +25,4 @@ intro.doLast {
 task myProperty {
     ext.myProperty = "Cherry" ;
 }
+
