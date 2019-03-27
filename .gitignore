@@ -27,3 +27,9 @@
 .gradle
 build
 ui
+
+# myself
+# bootstrap-4.0.0-dist
+**/bootstrap-4.0.0-dist/**/*bundle.js
+**/bootstrap-4.0.0-dist/**/*.map
+**/bootstrap-4.0.0-dist/**/*min.*
