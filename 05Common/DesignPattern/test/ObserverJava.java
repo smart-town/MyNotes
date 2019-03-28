@@ -1,5 +1,10 @@
 import java.util.* ;
 
+/**
+@description Use Java java.util.Observable&Observer
+@author luhha
+@version 1.0
+*/
 public class ObserverJava extends Observable {
     public static void main(String[] args) throws Exception{
         ObserverJava o = new ObserverJava() ;
