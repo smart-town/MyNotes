@@ -9,5 +9,10 @@ public class TestObject {
         String b = "12" ;
         System.out.println(Objects.equals(a, b)) ;
         System.out.println(Objects.equals("12",b)) ;
+
+        System.out.println("HashCode..."+"Hello".hashCode()) ;
+
+        TestObject ta = new TestObject() ;
+        System.out.println("a-hashCode:"+ta.hashCode()) ;
     }
 }
