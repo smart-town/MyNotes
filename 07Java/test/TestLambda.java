@@ -38,6 +38,8 @@ public class TestLambda {
         
         Arrays.sort(test,Comparator.comparing(TestLambda::getId));
         System.out.println(Arrays.toString(test)) ;
+
+        // Comparable<String> com1 = (String a)->{return this.length()-a.length();};
     }
     public static void testLambda(BiFunction<Integer,Integer,Integer> bi){
         System.out.println("Labmda test") ;
