@@ -36,3 +36,18 @@ Cookie 曾经一度用于客户端数据存储，但是随着现代浏览器开�
 
 `Domain`和`Path`定义了`Cookie`作用域，即`Cookie`应该发送给哪些`URL`。
 
+`Domain`标志指定了哪些主机可以接收 Cookie，如果不指定默认为**当前文档主机**（不包含子域名），如果指定了域名一般包含子域名。如，如果设置`Domain=mozilla.org`，则 Cookie 也包含在子域名中（`developer.mozilla.org`）
+
+`Path`指定了主机下哪些路径可以接受 Cookie，该 URL 路径必须存在于请求 URL 中，以字符串`/`作为路径分隔符，自路径也会被匹配
+
+### SameSite Cookies
+
+SameSite Cookie 允许服务器要求某个 Cookie 在跨站请求时不被发送，从而可以阻止跨站请求伪造攻击。不过目前并非所有浏览器都支持
+
+### js 访问
+
+js 可以通过`Document.cookie`创建新的 Cookie，也可以访问非`HttpOnly`的 cookie
+
+## 第三方 Cookie
+
+每个 Cookie 都有与之关联的域，如果 Cookie 中的域和页面的域相同，那么称这个 Cookie 为第一方 Cookie，如果不同则称之为第三方 Cookie。一个页面包含图片或存放在其他域上的资源时，第一方的 Cookie 也只会发送给设置它们的服务器。通过第三方组件设置的第三方 Cookie 主要用于广告和网络追踪。大多数浏览器都默认允许第三方 Cookie
