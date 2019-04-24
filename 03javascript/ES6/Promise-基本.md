@@ -37,3 +37,34 @@ promise.then(function(value){},function(error){});
 `then`方法接收两个回调函数作为参数，第一个回调函数是 Promise 对象变为`resolved`(`fulfilled`)时调用，第二个是则是`rejected`，第二个参数是可选的。这两个函数都接收`Promise`对象传出的值作为参数。
 
 【注意】Promise 新建后会立即执行。
+
+另外，`resolve`函数的参数除了正常值外，还可能是另一个`Promise`实例。如：
+```js
+const p1 = new Promise(...);
+const p2 = new Promise(function(resolve,rejected){
+    ...;
+    resolve(p1);
+})
+```
+`p1`和`p2`都是`Promise`实例，但是`p2`的`resolve`方法将`p1`作为参数，即一个异步操作的结果是返回另一个异步操作。此时，`p1`的状就会传递给`p2`，即`p1`的状态决定了`p2`的状态，如果`p1`状态为`pending`，那么`p2`的回调函数就会等待`p1`的状态改变。如果`p1`的状态已经是`resolved`或者`rejected`，那么 p2 的回调函数将会立刻执行。
+
+```js
+const p1 = new Promise(function(resolve,rejected){
+    setTimeout(()=>rejected(new Error("fail")),3000);
+})
+const p2 = new Promise(function(resolve,rejected){
+    setTimeout(()=>resolve(p1),1000);
+})
+p2.then(result=>console.log(result)).catch(error=>console.log(error));
+```
+上面代码中，`p1`是一个 promise,3s 之后变为`rejected`，`p2`的状态在 1s 之后改变，`resolve`返回的是`p1`，由于`p2`返回的是另一个`Promise`，导致`p2`自己的状态无效了，由`p1`的状态决定`p2`的状态，所以，后面的`then`语句都是针对`p1`的。过了 2s，`p1`变为`rejected`，导致触发`catch`方法指定的回调函数。
+【注意】调用`resolve`或`rejected`并不会终结`Promise`参数函数的执行。
+```js
+new Promise((s,f)=>{
+    r(1);
+    console.log(2);
+}).then(r=>console.log(r));
+//2
+//1
+```
+一般来说，调用`resolve`或`reject`之后，`Promise`的使命也就完成了。后续操作应该放在`then`中，而不应该写在`resolve`或`rejected`之后，所以最好在其前面加上`return`语句，如：`return resolve(1)`.
