@@ -1,5 +1,7 @@
 # Promise
 
+[原文](http://es6.ruanyifeng.com/#docs/promise)
+
 ## 1. 含义
 
 Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更加合理和强大。最早由社区提出并实现，ES6 将其写入了语言规范，原生提供了`Promise`对象。
