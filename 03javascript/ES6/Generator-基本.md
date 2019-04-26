@@ -64,3 +64,31 @@ g.next(true);////value:0
 这个功能有很重要的语法意义，Generator 函数从暂停状态到恢复执行，它的上下文状态是不变的。通过`next`方法的参数。就有办法在 Generator 函数开始执行后，继续向函数体内部注入值。也就是说，可以在 Generator 运行的不同阶段，从外部向内部注入不同的值，从而调整函数行为。
 
 【注意】由于`next`方法的参数表示上一个`yield`表达式的返回值。所以在第一次使用`next`方法时，传递参数是无效的。V8 引擎直接忽略第一次调用`next`方法传递的参数。
+
+## for...of 循环
+
+`for...of`循环可以自动遍历`Generator`函数运行自动生成的`Iterator`对象，且此时不需要调用`next`方法。需要注意，一旦`next`方法所返回的对象的`done`属性为`true`，`for...of`循环就会终止，且不包含该返回对象。也就是说，如果使用`return`则最后的值不会被包含。
+
+## Generator.prototype.throw()
+
+Generator 函数返回的遍历器对象，都有一个`throw`方法，可以在函数体外部抛出错误，然后在 Generator 内部捕获:
+```js
+var g = function* (){
+    try{
+        yield
+    } catch(e){
+        console.log('内部捕获',e);
+    }
+}
+var i = g();
+i.next();
+try {
+    i.throw('a');
+    i.throw('b');
+}catch(e){
+    console.log('外部捕获',b);
+}
+//内部捕获 a
+//外部捕获 b
+```
+上面代码中，遍历器对象`i`连续抛出两个错误，第一个错误被 Generator 函数体内的 catch 捕获，i 第二次抛出错误，由于函数内部 catch 已经执行过，所以不会再捕获到这个错误了。所以这个错误就抛出了`Generator`函数体，被函数体外的 catch 语句捕获
