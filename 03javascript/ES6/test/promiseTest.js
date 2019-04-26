@@ -26,7 +26,7 @@ const promise2 = new Promise((resolve,rejected)=>{
 })
 
 //promise2.then((success)=>{console.log("success!"+success)},error=>{console.log("p2-error:"+error)}).catch(error=>{console.log("error!"+error)})
-promise2.then(ajaxSuccess,error).then(success,error);
+promise2.then(ajaxSuccess, ajaxError).then(success, error);
 
 function success(value) {
     console.log("success-"+value) ;
@@ -36,7 +36,11 @@ function error(value) {
 }
 function ajaxSuccess(value){
     console.log("success-"+value);
-    return promise1;
+    return promise;
+}
+function ajaxError(value){
+    console.log("error-" + value);
+    return promise;
 }
 
 /* const p1 = new Promise(function (resolve, rejected) {
