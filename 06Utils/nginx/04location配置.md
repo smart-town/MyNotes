@@ -39,3 +39,30 @@ location ^~ /images/ {
 
 }
 ```
+
+## root 和 alias
+
+`nginx`指定文件路径有两种方式`root`和`alias`，两者的区别主要在于 nginx 如何解释 location 后面的 uri，这会使得两者分别以不同的方式将请求映射到服务器文件上。
+
+```
+[root]
+语法：root path
+默认值：root html
+配置段：http、server、location、if
+
+[alias]
+语法： alias path
+配置段： location
+```
+例子：
+
+location ~ /t/ {
+	root /www/root/html;
+}
+如果一个请求 uri 为`/t/a.html`时,web 服务器将会返回服务器上的`/www/root/html/t/a.html`文件
+
+alias ~ /t/ {
+	alias /www/root/html/new_t/;
+}
+如果请求 uri 为`/t/a.html`时，web 服务器返回`/www/root/html/new_t/a.html`，【注意】这里是`new_t`，alias 会将 location 后面的配置路径丢弃掉，将当前匹配的目录指向到指定的目录。
+`alias`只能位于`location`块中。

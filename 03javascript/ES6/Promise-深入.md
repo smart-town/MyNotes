@@ -16,6 +16,3 @@
 getJSON('/posts.json').then(function(post){}).catch(fucntion(error){})
 ```
 上面代码中，`getJSON`返回一个`Promise`对象，如果该对象的状态变为`resolved`，则会调用`then`方法指定的回调函数；如果异步操作抛出错误，状态就会变为`rejected`，就会调用`catch`方法指定的回调函数。**另外**，`then`方法指定的回调函数，如果运行中抛出错误，也会被`catch`方法捕获。
-
-
-
