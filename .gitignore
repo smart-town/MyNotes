@@ -35,3 +35,7 @@ ui
 **/bootstrap-4.0.0-dist/**/*min.*
 
 /.vscode/
+
+node_modules
+dist
+**/TypeScript/test/**/*.js*
