@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TestModal</title>
+    <link href="./modal.css" type="text/css" rel="stylesheet"/>
+    <style>
+        .mybutton{
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 20px;
+            outline: none;
+            background: lightblue;
+            border: none;
+            font-size: 20px;
+            transition: background-color 2s linear;
+        }
+        .mybutton:hover {
+            background-color: rgb(133, 133, 248);
+            cursor: pointer;
+        }
+        
+        body {
+            background: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <button class="mybutton" id="test">test</button>
+    <div class="mymodal" id="mymodal" style="display:none">
+        Content
+    </div>
+<script>
+    var mbutton = document.getElementById("test") ;
+    mbutton.addEventListener("click",function(){test("mymodal")});
+    var show=false;
+    function test(id){
+        console.log("my modal");
+        let obj = document.getElementById(id) ;
+        show=!show;
+        obj.style.setProperty("display",show?"flex":"none");
+    }
+</script>
+</body>
+</html>

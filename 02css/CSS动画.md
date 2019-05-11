@@ -111,3 +111,5 @@ transition 过渡是初始和结束两个状态之间的平滑过渡实现动画
 和 transition 类似，animation也是一个复合属性，包括：animation-name、animation-duration、animation-timing-function、animation-delay、animation-iteration-count、animation-direction、animation-play-state、animation-fill-mode。
 
 animation 制作动画需要两步，首先用关键帧声明动画，再用animation调用动画。
+
+- `animation-fill-mode`: 规定当动画不播放时（当动画完成或有一个动画延迟未开始播放时），要应用的元素样式。默认情况下，css 动画在第一个关键帧播放完之前不会影响元素，在最后一个关键帧完成后停止影响元素。可以取值：`none`、`forwards`(动画结束后应用该属性)、`backwards`

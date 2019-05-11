@@ -39,3 +39,5 @@ ui
 node_modules
 dist
 **/TypeScript/test/**/*.js*
+**/Cordova/**/test/**/*
+!**/Cordova/**/test/**/www/*
