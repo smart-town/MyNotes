@@ -42,3 +42,5 @@ dist
 
 build
 bin
+**/Cordova/**/test/**/*
+!**/Cordova/**/test/**/www/*
