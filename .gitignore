@@ -39,3 +39,6 @@ ui
 node_modules
 dist
 **/TypeScript/test/**/*.js*
+
+build
+bin
