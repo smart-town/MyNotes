@@ -69,7 +69,7 @@ async function f(){
 f().then(v=>console.log(v))//hello world
 ```
 
-`async`函数内部抛出错误，会导致`Promise`对象变为`reject`，抛出的错误对象会被`catch`方法回调函数接收到。
+`async`函数内部抛出错误，会导致返回的`Promise`对象变为`reject`，抛出的错误对象会被`catch`方法回调函数接收到。
 ```js
 async function f(){
     throw new Error("我错了");

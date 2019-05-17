@@ -19,7 +19,7 @@ getJSON('/posts.json').then(function(post){}).catch(fucntion(error){})
 
 `Promise`对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误**总会**被下一个`catch`捕获。
 
-一般来说，**不要**在`then`方法中定义`Reject`状态的回调函数（即`then`的第二个参数），总是使用`catch`方法。即：
+> 一般来说，**不要**在`then`方法中定义`Reject`状态的回调函数（即`then`的第二个参数），总是使用`catch`方法。即：
 ```js
 promise.then(function(data){
     //success
