@@ -8,7 +8,7 @@
 </head>
 <body>
     js中的继承：原型继承。区别等？
-
+	<input oninput="test()" id="aaa"/>
     <script>
         //父类
         function Person(name,gender){
@@ -27,6 +27,13 @@
             Person.call(this, gender) ;
             this.musle = musle;
         }
+		
+		var a = document.getElementById("aaa");
+		function test(event){
+			console.log(event);
+			console.log("input值:"+a.value);
+			a.value = a.value.replace(/(\W)+/g,"");
+		}
         
     </script>
 </body>

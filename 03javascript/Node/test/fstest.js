@@ -11,3 +11,10 @@ fs.readFile('fstest.js', function (err, data) {
 var data = fs.readFileSync("fstest.js");
 console.log("同步:", data.toString());
 console.log("程序执行完毕");
+
+try{
+	let a = fs.readFileSync("test.ts");
+console.log(a.toString());
+} catch(e){
+	console.error("Error:"+e.message);
+}
