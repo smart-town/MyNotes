@@ -1,0 +1,36 @@
+<body>
+  <p class="inp_file_name">未选择</p>
+  <input type="file" id="inp_file">
+  <button class="cancel_file_but">清除选择的文件</button>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"></script>
+<script>
+  $('#inp_file').onchange=function(e){
+    // console.log($(this).val());//val()获取到的是完整的文件路径值；C:\fakepath\js-dom.png
+    console.log(e)
+    /*
+    简单的获取选择文件的名字
+    currentTarget:获取到的是绑定事件的对象
+    e.currentTarget.files 是一个数组，如果支持多个文件，则需要遍历
+    */
+    var fileMsg = e.currentTarget.files;
+    var fileName = fileMsg[0].name;
+    console.log(fileName);//js-dom.png
+    //大小 字节 
+    var fileSize = fileMsg[0].size;
+    console.log(fileSize);//350061
+    //类型 
+    var fileType = fileMsg[0].type;
+    console.log(fileType);//image/png
+    // 判断文件类型
+    var type=(fileType.substr(fileType.lastIndexOf("."))).toLowerCase();
+    if(type!=".jpg"&&type!=".gif"&&type!=".jpeg"&& type!=".png"){
+      alert("您上传图片的类型不符合(.jpg|.jpeg|.gif|.png)！");
+       return false;
+    }
+    $('.inp_file_name').text(fileName)
+  }
+  $('.cancel_file_but').click(function(){
+    $('.inp_file').val(null);
+  })
+</script>
