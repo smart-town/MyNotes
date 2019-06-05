@@ -42,3 +42,6 @@ build
 bin
 **/Cordova/**/test/**/*
 !**/Cordova/**/test/**/www/*
+
+# Java 堆栈 Dump 映像文件。
+*.hprof
