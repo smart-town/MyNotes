@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOMTest</title>
+</head>
+<body>
+    <div class="tips" id="tips"></div>
+    <button onclick="addToRoot()">add</button>
+    <div class="root" id="root"></div>
+    <script>
+        let tips = document.getElementById("tips") ;
+        let root = document.getElementById("root") ;
+        let rootContent = root.children; //HTMLCollection
+
+        function update(){
+            tips.innerHTML = rootContent.length;//动态集合.
+        }
+        function addToRoot(){
+            let div = document.createElement("div") ;
+            div.innerHTML = "QaQ";
+            root.appendChild(div)
+            update();
+        }
+        if(root.hasChildNodes()){
+            tips.innerText=`root初始时node:${JSON.stringify(root.childNodes)}`
+        }
+
+    </script>
+</body>
+</html>
