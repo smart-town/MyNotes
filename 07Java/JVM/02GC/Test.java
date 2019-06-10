@@ -1,3 +1,4 @@
+//-XX:+PrintGC 打印 gc 日志
 class ReferenceGC {
     public Object instance = null;
     private static final int _1MB=1024*1024;
