@@ -2,6 +2,7 @@
 class ReferenceGC {
     public Object instance = null;
     private static final int _1MB=1024*1024;
+    public static String test = "Cherry";
     private byte[] bigSize=new byte[2*_1MB];
     public static void testGC(){
         ReferenceGC t = new ReferenceGC();
