@@ -51,8 +51,19 @@ class ClassLoaderTest{
         };
 
         Object obj = myloader.loadClass("Test").newInstance();
-        System.out.println(obj.getClass());
+       System.out.println(obj.getClass().getClassLoader());
         System.out.println(obj instanceof Test);
-         
+
+        /* Thread a = new Thread(()->{
+            try {
+                Object obj2 = myloader.loadClass("Test").newInstance();
+                System.out.println(obj2 instanceof Test);
+                System.out.println("test");
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        });
+        a.setContextClassLoader(myloader);
+        a.start(); */
     }
 }
