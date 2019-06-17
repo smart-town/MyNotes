@@ -31,7 +31,30 @@ for(let x of Object.keys(b)){
 }
 console.log("over");*/
 
-let array1 = [];
+/* let array1 = [];
 for(let x of array1){
 	console.log(x);
+} */
+
+function checkExist(objPath, flag=0){
+    let exist = fs.existsSync(objPath);
+    if (flag === 1 || exist) {
+        return exist;
+    } else {
+        objArr = objPath.split(path.sep)
+        createPath(objArr, objArr.length);
+    }
 }
+function createPath(objArr,length){
+    console.log(`准备创建${objArr}-${length}`)
+    if(length<0){
+        return;
+    } else {
+        let temp = path.join(...objArr.slice(0,objArr.length-length+1));
+        if(!fs.existsSync(temp)) {
+            fs.mkdirSync(temp)
+        }
+        createPath(objArr,length-1);
+    }
+}
+console.log(checkExist(path.join("E:\\","cherry","okkJune")));
