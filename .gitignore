@@ -48,3 +48,7 @@ bin
 
 **/test/lib/*
 package-lock.json
+
+
+#Ubuntu C
+*.out
