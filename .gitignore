@@ -45,3 +45,6 @@ bin
 
 # Java 堆栈 Dump 映像文件。
 *.hprof
+
+**/test/lib/*
+package-lock.json
