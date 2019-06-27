@@ -5,10 +5,10 @@ const webpack = require("webpack");
 module.exports = {
     entry: {
         app: './src/index.js',
-        model: './src/test/entryTwo.js',
+        // model: './src/test/entryTwo.js',
     },
     output: {
-        filename: '[name].[chunkhash].js',
+        filename: '[name].[hash].js',
         path: path.resolve(__dirname, '..','dist')
     },
     module: {
@@ -24,6 +24,16 @@ module.exports = {
                 use: [
                     'file-loader'
                 ]
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /(node_modules)/,
+                use:{
+                    loader: 'babel-loader',
+                    options:{
+                        presets:['@babel/preset-env','@babel/preset-react']
+                    }
+                }
             }
         ]
     },
@@ -65,5 +75,6 @@ module.exports = {
                 }
             }
         }
-    }
+    },
+    resolve:{extensions: ['.js','.jsx'],}
 }
