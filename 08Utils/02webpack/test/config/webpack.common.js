@@ -76,5 +76,8 @@ module.exports = {
             }
         }
     },
-    resolve:{extensions: ['.js','.jsx'],}
+    resolve: { 
+        extensions: ['.js', '.jsx'],
+        modules: [path.resolve("C:\\Users\\luhha\\Desktop\\temp\\node_modules"),"node_modules", ]
+    }
 }
