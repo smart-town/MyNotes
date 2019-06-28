@@ -52,3 +52,6 @@ package-lock.json
 
 #Ubuntu C
 *.out
+
+.sass-cache
+02css/test/*.css*
