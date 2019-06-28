@@ -12,6 +12,6 @@ int main(){
 
     unsigned int maxInt = 0;
     maxInt = 0-1;
-    printf("最大的int:%ud", maxInt);
+    printf("最大的int:%ud\n", maxInt);
     return 0;
 }
