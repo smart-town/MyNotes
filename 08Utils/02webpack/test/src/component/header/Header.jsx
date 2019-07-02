@@ -1,5 +1,5 @@
 import React from 'react';
-import navigator from 'cordova-plugin-dialogs';
+// import navigator from 'cordova-plugin-dialogs';
 export default class Header extends React.Component {
     constructor(props){
         super(props);
