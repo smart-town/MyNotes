@@ -3,5 +3,7 @@ TODO /**
 * 2. UML 类图
 * 3. GitHub 使用
 * 4. babel 使用 
-* 5. SASS 使用(使用到 React 中)
+* 5. SASS 使用(使用到 React 中) 暂定（因为有个postcss）[postcss](https://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss/)
+* 6. 懒加载(社群项目)
+* 7. 确认目标以及努力叭。。。
 */
