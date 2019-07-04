@@ -1,0 +1,6 @@
+$theme: lightblue;
+
+body {
+    background-color: $theme;
+    /* background-color: lightblue; */
+}
