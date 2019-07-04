@@ -21,7 +21,7 @@ person.describe;
 
 ```js
 function f(){
-    return 'name:"+this.name;
+    return 'name:'+this.name;
 }
 var A = {
     name: 'A',
