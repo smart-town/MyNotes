@@ -11,6 +11,13 @@
     <button onclick="addToRoot()">add</button>
     <div class="root" id="root"></div>
     <script>
+        let interval = setInterval(function(){
+            console.log(document.readyState);
+            if(document.readyState === 'complete') {
+                clearInterval(interval);
+            }
+        },100);
+
         let tips = document.getElementById("tips") ;
         let root = document.getElementById("root") ;
         let rootContent = root.children; //HTMLCollection
@@ -27,7 +34,9 @@
         if(root.hasChildNodes()){
             tips.innerText=`root初始时node:${JSON.stringify(root.childNodes)}`
         }
-
     </script>
+    <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
+    <!-- <script crossorigin src="file:///E:\MyNotes\03javascript\00test\testVar.js"></script> -->
 </body>
 </html>
