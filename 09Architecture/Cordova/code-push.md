@@ -5,7 +5,8 @@
 依赖安装：
 ```
 npm install code-push-server -g
-npm install code-push -D
+npm install code-push -g
+npm install code-push-cli -g
 ```
 
 ## 后台服务搭建
