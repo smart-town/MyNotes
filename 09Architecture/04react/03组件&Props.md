@@ -25,7 +25,9 @@ class Welcome extends React.Component {
 }
 ```
 
-【注意】组件名称必须以大写字母开头
+**【注意】组件名称必须以大写字母开头**
+
+
 
 ## 组件渲染
 
