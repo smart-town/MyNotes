@@ -33,12 +33,23 @@
             }
         }
         class Button2 extends React.Component {
-            render(){
-                return <div>🍒</div>
+            constructor(props){
+                super(props);
+                this.divRef = React.createRef();
             }
+            render(){
+                return <div><span ref={this.divRef}>🍒</span><Hello test={this.divRef}>SmallTown</Hello></div>
+            }
+            
         }
         function Hello(props){
-            return <div>Hello!I am {props.children}</div>
+            // props.test.style.background="purple";
+            console.log(`[abegin.html]:`);
+            console.log(props);
+            function testClick(){
+                props.test.current.innerHTML = "🍎";
+            }
+            return <div onClick={testClick}>Hello!I am {props.children}</div>
         }
         const HelloC = <Hello>SmartTown</Hello>;
         let testRoot = document.querySelector("#root");
@@ -46,7 +57,7 @@
         let testComponent = document.querySelector("#testComponent");
         ReactDOM.render(React.createElement(Button), testRoot);
         ReactDOM.render(React.createElement(Button2), testRoot2);
-        ReactDOM.render(HelloC, testComponent);
+        // ReactDOM.render(HelloC, testComponent);
     </script>
 </body>
 </html>
