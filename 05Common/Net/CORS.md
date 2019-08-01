@@ -1,5 +1,7 @@
 # HTTP 访问控制
 
+[原文](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+
 跨域资源共享(CORS)是一种机制，使用额外的 HTTP 请求头告诉浏览器，让运行在一个 origin(domain) 上的 web 应用被准许访问来自不同源服务器上的指定资源。当一个资源从与资源本身所在的服务器**不同的域、协议、端口**请求一个资源时，资源会发起一个**跨域 HTTP 请求**。
 
 比如站点 `http://domian-a.com` 的某 HTML 对 `<img>` 的 src 请求为 `http://domain-b.com/image.jpg` ，网络上的许多页面都会加载来自不同域的 CSS 样式表、图像和脚本资源。
