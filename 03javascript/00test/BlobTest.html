@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blob</title>
+</head>
+<body>
+    <h1>Test Blob</h1>
+    <fieldset id="root">
+        <legend>{{title}}</legend>
+        <input type="file" v-on:change="receive($event)"/><br/>
+        <span v-if="files"><pre>{{readData}}</pre></span><span v-else>还未选择文件😟</span>
+    </fieldset>
+    <script src="../../00test/resource/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: "#root",
+            data: {
+                title: 'testBlob',
+                files: undefined,
+                readData: 'nocontent',
+            },
+            methods: {
+                receive: function(event){
+                    // console.log("receive");
+                    // console.log(event.target);
+                    console.log(event.target.files.length);
+                    this.files = event.target.files;
+                    this.transfer(this.files[0]);
+                },
+                
+                transfer: function(srcBlob){
+                    console.log(srcBlob.lastModifiedDate + "----" + srcBlob.name);
+                    let reader = new FileReader() ;
+                    reader.readAsText(srcBlob);
+                    reader.onload=function(){
+                        console.log("readover");
+                        var text = reader.result;
+                        console.log(vm);
+                        vm.readData = text;
+                    };
+                    reader.onerror = ()=>{vm.data.readData = "读取失败";}
+                },
+            }
+        })
+    </script>
+</body>
+</html>

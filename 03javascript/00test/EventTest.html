@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event</title>
+    <style>
+        .eventDiv {
+            height: 100px;
+            text-align: center;
+            background: lightblue;
+        }
+        .eventSpan {
+            display: inline-block;
+            height: 4rem;
+            width: 10rem;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="eventDiv">
+        <span class="eventSpan" id="tipEvent"></span>
+    </div>
+    <script>
+        let tipEvent = document.getElementById("tipEvent") ;
+        window.addEventListener("click",(event)=>{
+            console.log(`
+                ---------------
+                ${event.target.tagName},
+                ${event.currentTarget.tagName},
+                ---------------
+            `)
+        })
+    </script>
+</body>
+</html>

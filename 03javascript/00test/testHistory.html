@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>historyTest</title>
+</head>
+<body>
+    <fieldset>
+        <legend>测试 History</legend>
+        属性：length:<span id="test"></span> <br/>
+        事件是否触发: <span id="listenPopState"></span><br/>
+        <input type="text" id="inputHistory"/><button id="setHistory">set</button>
+        <a href="https://wangdoc.com/javascript/bom/history.html">戳这里</a>
+    </fieldset>
+    <script>
+        let inputHistory = document.getElementById("inputHistory") ;
+        let setHistory = document.getElementById("setHistory") ;
+        let test = document.getElementById("test") ;
+        let listenPopState = document.getElementById("listenPopState") ;
+        let times = 0;
+
+        window.onload = function(){
+            test.innerText = history.length;
+        }
+        setHistory.onclick = ()=>{
+            let value = inputHistory.value ;
+            if(value!==""){
+                history.pushState({state: value, times: ++times},"",value);
+                test.innerHTML = history.length;
+
+            }
+        }
+
+        window.addEventListener("popstate",(event)=>{
+            listenPopState.innerHTML = `监听到 popstate 变化:${JSON.stringify(event.state)}`
+        });
+    </script>
+</body>
+</html>
