@@ -5,19 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Js Index</title>
+    <style>
+        input:invalid {
+        }
+    </style>
 </head>
 <body>
     <header>
         <label id="tips"></label>
         <samp>ok</samp>
+        <a href="data:text/html,Hello!" download="ok" id="testDownload">tst</a>
+        <form target="#">
+            <input required/><br/>
+            <input pattern="\w"/>
+            <button>Submit</button>
+        </form>
     </header>
     <script>
-        let tips = document.getElementById("tips") ;        
+        let tips = document.getElementById("tips") ;
+        let testDownload = document.getElementById("testDownload") ;
         tips.innerHTML = screen.orientation.type;
         document.addEventListener("deviceorientation",(data)=>{
             console.log("changed"+data);
             tips.innerHTML = screen.orientation.type;
         })
+
+        let download = "data:text/html,";
+        let data = "我是杭杭哥";
+        testDownload.href=download+data;
     </script>
 </body>
 </html>

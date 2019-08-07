@@ -46,5 +46,5 @@ File 对象代表一个文件，用来读写文件信息，它继承了`Blob`对
 - `abort()`
 - `readAsArrayBuffer()`
 - `readAsBinaryString()`
-- `readAsDataURL()`
+- `readAsDataURL()`： 读取完成后，`result`属性将会返回一个 Data URL格式的字符串，代表文件内容。对于图片文件，这个字符串可以用于`<img>`元素的`src`属性。注意该字符串不能直接进行 base64 解码，必须将前缀`data:*/*;base64,`从字符串中去掉才能解码。
 - `readAsText()`
