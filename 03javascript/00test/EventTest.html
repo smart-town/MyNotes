@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zH">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
             text-align: center;
             background: lightblue;
         }
+
         .eventSpan {
             display: inline-block;
             height: 4rem;
@@ -19,20 +21,57 @@
         }
     </style>
 </head>
+
 <body>
-    <div class="eventDiv">
+    <div class="eventDiv" id="eventDiv">
         <span class="eventSpan" id="tipEvent"></span>
     </div>
+    <fieldset tabindex="1" id="cliptest">
+        <legend>ClipboardEvent</legend>
+        测试内容
+    </fieldset>
+
+
+    <script src="../../00test/resource/vue.js"></script>
     <script>
-        let tipEvent = document.getElementById("tipEvent") ;
-        window.addEventListener("click",(event)=>{
+        let tipEvent = document.getElementById("tipEvent");
+        let eventDiv = document.getElementById("eventDiv");
+        let cliptest = document.getElementById("cliptest");
+        let listenFunc = function (event) {
             console.log(`
-                ---------------
-                ${event.target.tagName},
-                ${event.currentTarget.tagName},
-                ---------------
-            `)
+                ----------------------------------------
+                event.target.tagName:${event.target.tagName},
+                event.currentTarget.tagName:${event.currentTarget.tagName},
+                event.bubbles:${event.bubbles},
+                event.cancelable:${event.cancelable},
+                event.eventPhase:${event.eventPhase},
+                event.detail:${event.detail},
+                composedPath:${event.composedPath()}
+                ----------------------------------------
+            `);
+            if (event.currentTarget.tagName === "SPAN") {
+                console.log(`当前触发的目标为 SPAN，测试 stopPropagation 取消传递`)
+                event.stopPropagation();
+            }
+        };
+        eventDiv.addEventListener("click", listenFunc);
+        tipEvent.addEventListener("click", listenFunc);
+        window.addEventListener("click", listenFunc);
+
+        console.log(new Event("test").bubbles);
+
+        cliptest.addEventListener('copy',(e)=>{
+            e.clipboardData.setData('text/plain',e.clipboardData.getData()+"Thanks!");
+            e.preventDefault(); 
+        })
+        cliptest.addEventListener('focus',(e)=>{
+            console.log('focus!')
+            e.target.style.background = 'pink'
+        })
+        cliptest.addEventListener('blur',(e)=>{
+            e.target.style.background = 'white'
         })
     </script>
 </body>
+
 </html>
