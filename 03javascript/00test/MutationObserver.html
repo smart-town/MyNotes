@@ -19,7 +19,8 @@
         })
 
         let observerFunc = (mutatios, observer) => {
-            console.log(mutatios);
+            console.log(mutatios[0].addedNodes);
+            
         }
         let observer = new MutationObserver(observerFunc);
 

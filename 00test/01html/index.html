@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <iframe class="test" src="https://time.geekbang.org/column/article/8701" id="test">
+
+    </iframe>
+    <script>
+        let test = document.getElementById("test") ;
+        test.height = window.innerHeight;
+        test.width = "100%";
+        test.style.border="none";
+    </script>
+</body>
+</html>
