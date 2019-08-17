@@ -7,6 +7,10 @@
 IF [NOT] ERRORLEVEL number command
 IF [NOT] string1==string2 command
 IF [NOT] EXIST filename command
+
+IF judge (
+    command
+)
 ```
 
 ### GOTO

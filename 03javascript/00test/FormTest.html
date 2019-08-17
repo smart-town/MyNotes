@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FormTest</title>
+</head>
+<body>
+    <form target="" id="myForm" name="myForm">
+        <input type="text" id="username" name="username" value="default">
+        <br/>
+        url: <input type="URL">
+        <br/>
+        email: <input type="email" id="email">
+        <br/>
+        <button>ok</button>
+    </form>
+    <fieldset id="root">
+        <legend>属性和方法</legend>
+        <dl>
+            <dt>email.willValidate</dt>
+            <dd>{{email.willValidate}}</dd>
+        </dl>
+        <dl>
+            <dt>email.setCustomValidity</dt>
+            <dd><button @click="testCustom">test</button></dd>
+        </dl>
+    </fieldset>
+
+    <script src="../../00test/resource/vue.js"></script>
+    <script src="../../00test/resource/jquery-3.3.1.js"></script>
+    <script>
+        var myForm = document.getElementById("myForm");
+        var email = document.getElementById("email");
+        console.log(email.willValidate);
+        var formData = new FormData(myForm);
+        console.log(formData.get('username'));//获取控件值
+        formData.set('username', 'test');
+
+        let vm = new Vue({
+            el: "#root",
+            data: {
+                email: email,
+            },
+            methods: {
+                testCustom: function(){
+                    email.setCustomValidity("error");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

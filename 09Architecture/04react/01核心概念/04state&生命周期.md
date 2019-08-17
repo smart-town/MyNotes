@@ -1,8 +1,10 @@
 # state 和 生命周期
 
 生命周期：
-[!react生命周期](https://upload-images.jianshu.io/upload_images/4118241-d979d05af0b7d4db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/488/format/webp)
+![react生命周期](https://upload-images.jianshu.io/upload_images/4118241-d979d05af0b7d4db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/488/format/webp)
 
+
+[生命周期](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 使用类声明一个组件允许我们使用其他特性，如**局部状态**、**生命周期钩子**
 
 ## 使用类

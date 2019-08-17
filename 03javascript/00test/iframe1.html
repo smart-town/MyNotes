@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Outer</title>
+</head>
+
+<body>
+    外部网页<button id="test1">test</button><br />
+    <div id="tips1"></div>
+    <fieldset>
+        <iframe name="testFrame" src="./iframe2.html" width="80%" height="200px" style="border:0"></iframe>
+    </fieldset>
+    <script>
+        var tips1 = document.getElementById("tips1");
+        var test1 = document.getElementById("test1");
+        var frame = document.getElementsByName("testFrame")[0];
+        test1.addEventListener('click', testF);
+        function testF() {
+            console.log(window.length);
+            // console.log(window.frames[0].src);
+            // console.log(frame);
+            if(frame.src.search("#")!==-1) {
+                frame.src = frame.src.replace(/#.*/,`#${new Date()}`);
+            } else {
+                frame.src = frame.src + `#NEW`;
+            }
+        }
+
+
+        window.addEventListener("hashchange", testHashChange);
+        function testHashChange() {
+            if (location.hash) {
+                tips1.innerText = location.hash;
+            }
+        }
+
+        // test1.onclick = test1F;
+        window.addEventListener("message",receiveMessage);
+        function receiveMessage(event){
+            console.log("[iframe1.html]父窗口测试");
+            tips1.innerHTML = `接收到子窗口${event.origin}消息:${JSON.stringify(event.data)}`
+        }
+
+    </script>
+</body>
+
+</html>

@@ -12,6 +12,12 @@ Context 设计的目的是为了共享那些被认为一个组件树而言是全
 
 ## 使用
 
+### 使用 context 之前的考虑
+
+Context 主要的应用场景在于很多不同层级的组件需要访问同样一些数据，请**谨慎使用**，因为这会使得组件的**复用性变差**。
+
+**如果只是想避免层层传递一些属性，组件组合有时候是一个比 context 更好的方案**
+
 ### `React.createContext`.
 
 `const {Provider, Consumer} = React.createContext(defaultValue)`

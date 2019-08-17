@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<title>HTML5调用百度地图API进行地理定位实例</title>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=2.0&ak=134db1b9cf1f1f2b4427210932b34dcb"></script>
+</head>
+
+<body style="margin:50px 10px;">
+    <div id="status" style="text-align: center"></div>
+    <div id="tips" style="text-align: center"></div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    let tips = document.getElementById("tips")
+    window.onload = function () {
+        var x, y;
+        if (navigator.geolocation) {
+            document.getElementById("status").innerHTML = "HTML5 Geolocation is supported in your browser.";
+            // 百度地图API功能
+            // let opt = new LocalCityOptios();
+            let city = new BMap.LocalCity();
+            city.get((result)=>{
+                console.log(result);
+            })
+            console.log(city);
+            return;
+        }
+    };
+</script>
