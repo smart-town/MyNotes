@@ -8,4 +8,5 @@ TODO /**
 * 7. 确认目标以及努力叭。。。
 * 8. css 像素以及设备像素。。。
 * 9. 关于 maven 私服的配置（配置多个私服，哪个能用用哪个）
+* 10. npm package.json [整体了解](http://caibaojian.com/npm/files/package.json.html)
 */
