@@ -23,6 +23,9 @@
         div#frame>iframe{
             border: 1px solid gray;
         }
+		option:selected {
+			background: red;
+		}
     </style>
 </head>
 <body>
@@ -30,10 +33,15 @@
     <iframe style="width:80%;height:100%;" src="./inner.html"></iframe>
     <iframe style="width:80%;height:100%;" src="file:///E:/MyNotes/01html/test/inner.html"></iframe>
     </div>
+	<select id="testSelect">
+		<option value="ok">ok</option>
+		<option value="ok2">ok2</option>
+	</select>
     <script>
         function abc(){
             alert("abc");
         }
+		
     </script>
 </body>
 </html>

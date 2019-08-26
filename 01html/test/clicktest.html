@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QaQ</title>
+    <style>
+        .test {
+            position: absolute;
+            left: 100px;
+            top: 20px;
+            -webkit-user-drag:none;
+        }
+        /* body {
+            height: 1000px;
+        } */
+    </style>
+</head>
+<body>
+    <script>
+        window.addEventListener("click",(event)=>{
+            console.log(`(${event.clientX},${event.clientY})`);
+            let element = document.createElement("IMG") ;
+            element.setAttribute("class","test") ;
+            element.setAttribute("src","../../00test/resource/img/red-heart.png")
+            element.style.left = event.clientX+"px";
+            element.style.top = event.clientY+"px";
+            window.document.body.appendChild(element);
+            setTimeout(()=>{element.parentElement.removeChild(element)},2000);
+
+        }) 
+    </script>
+</body>
+</html>
