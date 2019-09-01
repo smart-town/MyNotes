@@ -17,7 +17,14 @@ export default class SetEntry extends React.Component {
         this.setState({[event.target.id]:event.target.value})
     }
     emit(){
-        console.log(this.state.footer)
+        console.log(this.state)
+        console.log(this.props);
+        if (this.props.setHeader && this.state.header){
+            this.props.setHeader(this.state.header)
+        }
+        if(this.props.setTitle && this.state.footer){
+            this.props.setTitle(this.state.footer);
+        }
     }
     render() {
         return (

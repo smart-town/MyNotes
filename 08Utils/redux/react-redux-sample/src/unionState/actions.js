@@ -7,5 +7,5 @@ export function setHeader(title){
     return {type:actions.RENAME, title: title}
 }
 export function setTitle(title){
-    return {type:action.TITLE, title: title}
+    return {type:actions.TITLE, title: title}
 }
