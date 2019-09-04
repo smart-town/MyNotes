@@ -1,7 +1,0 @@
-$theme: lightblue;
-$fontColor: white;
-body {
-    background-color: $theme;
-    color: $fontColor;
-    /* background-color: lightblue; */
-}

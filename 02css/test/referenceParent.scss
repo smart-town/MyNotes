@@ -1,9 +1,0 @@
-#main {
-    color: red;
-    &:hover {
-        color: green;
-    }
-    #root & {
-        color: purple;
-    }
-}
