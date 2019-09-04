@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>InnerHTML</title>
+</head>
+
+<body>
+    内部网页 InnerHTML <button id="test">te</button><button id="post">post</button>
+    <div id="tips"></div>
+    <script>
+        let tips = document.getElementById("tips");
+        let test = document.getElementById("test");
+        let post = document.getElementById("post");
+
+        test.addEventListener("click", testF);
+
+        function testF() {
+            console.log(`[iframe2.html]测试修改父 frame`);
+            if (window.parent !== window) {
+                tips.innerHTML = "检测到已经被嵌入";
+                console.log(window.parent.location);
+                window.parent.location.href += `#test through hash`;
+            }
+        }
+
+        window.addEventListener("hashchange", testHashChange);
+        function testHashChange() {
+            if (location.hash) {
+                tips.innerText = location.hash;
+            }
+        }
+
+        post.addEventListener("click",postTest);
+        function postTest(){
+            if (window.parent !== window) {
+                console.log(`[iframe2.html]测试发送postMessage`)
+                window.parent.postMessage({info:"ok"}, "*");
+            }
+        }
+    </script>
+</body>
+
+</html>

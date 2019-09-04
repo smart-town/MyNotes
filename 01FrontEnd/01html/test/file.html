@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<input type="file" id="test"><button id="button">ok</button><br/>
+	<div id="text"></div>
+	<div id="mark"></div>
+	<input id="test2" type="file"  multiple webkitdirectory=""/>
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/core.js"></script>
+	<script>
+		const ok = document.getElementById("button");
+		const test = document.getElementById("test");
+		const mark = document.getElementById("mark");
+		const text = document.getElementById("text");
+		button.onclick=()=>{
+			console.log(test.files[0]);
+			console.log(test.files[0].path);
+
+			//console.log(getObjectURL(test.files[0]));
+			//alert(test.file);
+		}
+		function getObjectURL(file) {
+            var url = null;
+            if (window.createObjcectURL != undefined) {
+                url = window.createOjcectURL(file);
+            } else if (window.URL != undefined) {
+                url = window.URL.createObjectURL(file);
+            } else if (window.webkitURL != undefined) {
+                url = window.webkitURL.createObjectURL(file);
+            }
+			creatImg(url);
+			text.innerHTML=document.getElementsByTagName('img')[0].getAttribute('src');
+			alert($("#test").val());
+            return url;
+        }
+		
+		function creatImg(imgRUL){   //根据指定URL创建一个Img对象  
+			var textHtml = "<img src='"+imgRUL+"'/>";  
+			mark.innerHTML=textHtml; 
+		}
+		
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOMTest</title>
+</head>
+<body>
+    <div class="show"></div>
+    <div class="tips" id="tips"></div>
+    <button onclick="addToRoot()">add</button>
+    <div class="root" id="root"></div>
+    <div class="testAppend" id="testAppend"></div>
+    <script>
+        let interval = setInterval(function(){
+            console.log(document.readyState);
+            if(document.readyState === 'complete') {
+                clearInterval(interval);
+            }
+        },100);
+
+        let tips = document.getElementById("tips") ;
+        let root = document.getElementById("root") ;
+        let rootContent = root.children; //HTMLCollection
+        
+        function update(){
+            tips.innerHTML = rootContent.length;//动态集合.
+        }
+        function addToRoot(){
+            let div = document.createElement("label") ;
+            div.innerHTML = "<span>QaQ</span>";
+            root.appendChild(div)
+            update();
+        }
+        if(root.hasChildNodes()){
+            tips.innerText=`root初始时node:${JSON.stringify(root.childNodes)}`
+        }
+
+
+        let testAppend = document.getElementById("testAppend") ;
+        let newEle = document.createElement("div")
+        newEle.textContent = testAppend instanceof ParentNode;
+        testAppend.appendChild(newEle);
+    </script>
+    <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
+    <!-- <script crossorigin src="file:///E:\MyNotes\03javascript\00test\testVar.js"></script> -->
+</body>
+</html>

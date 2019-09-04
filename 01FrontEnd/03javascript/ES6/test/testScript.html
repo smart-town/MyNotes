@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TestScript</title>
+</head>
+<body>
+    <!-- <script src="./module1.js" defer></script> -->
+    <!-- <script src="./module2.js" async></script> -->
+    <button id="btn">test</button>
+    <script type="module">
+        import module1 from './module1.js';
+        let btn = document.getElementById("btn") ;
+        btn.onclick = module1;
+    </script>
+</body>
+</html>

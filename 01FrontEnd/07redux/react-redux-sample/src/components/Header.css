@@ -1,0 +1,6 @@
+.my-header {
+    display: flex;
+    justify-content: center;
+    color: lightblue;
+    font-size: 2rem;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Begin</title>
+</head>
+<body>
+    <div id="root"></div>
+    <div id="root2"></div>
+    <div id="testComponent"></div>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script type="text/babel">
+        class Button extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {liked: false};
+            }
+            render(){
+                if(this.state.liked) {
+					//this.setState({liked:false});
+                    return 'you like this';
+                }
+				//this.setState({liked:true});
+                return React.createElement(
+                    'button',
+                    {onClick: ()=>this.setState({liked: true})},
+                    'LIKE ^_^'
+                )
+            }
+        }
+        class Button2 extends React.Component {
+            constructor(props){
+                super(props);
+                this.divRef = React.createRef();
+            }
+            render(){
+                return <div><span ref={this.divRef}>🍒</span><Hello test={this.divRef}>SmallTown</Hello></div>
+            }
+            
+        }
+        function Hello(props){
+            // props.test.style.background="purple";
+            console.log(`[abegin.html]:`);
+            console.log(props);
+            function testClick(){
+                props.test.current.innerHTML = "🍎";
+            }
+            return <div onClick={testClick}>Hello!I am {props.children}</div>
+        }
+        const HelloC = <Hello>SmartTown</Hello>;
+        let testRoot = document.querySelector("#root");
+        let testRoot2 = document.querySelector("#root2");
+        let testComponent = document.querySelector("#testComponent");
+        ReactDOM.render(React.createElement(Button), testRoot);
+        ReactDOM.render(React.createElement(Button2), testRoot2);
+        // ReactDOM.render(HelloC, testComponent);
+    </script>
+</body>
+</html>
