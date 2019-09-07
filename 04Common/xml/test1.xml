@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--<!DOCTYPE 计划 SYSTEM "test1.dtd">-->
+<计划>
+    <描述>测试test</描述>
+    <内容><![CDATA[
+        if(a>b &&b<a) {printf("ok");}
+    ]]>
+    </内容>
+    <时间
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="test1.xsd"
+    >
+    </时间>
+</计划>

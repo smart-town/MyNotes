@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="计划">
+<xs:complexType >
+    <xs:sequence>
+        <xs:element name="类型" type="xs:string"/>
+        <xs:element name="执行人" type="xs:string"/>
+    </xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+<!--<xs:element name="执行人">-->
+<!--    <xs:attribute name="name" type="xs:string"/>-->
+<!--</xs:element>-->

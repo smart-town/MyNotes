@@ -1,0 +1,3 @@
+<!ELEMENT 计划 (类型,描述)>
+<!ELEMENT 描述 (#PCDATA)>
+<!ELEMENT 类型 (#PCDATA)>

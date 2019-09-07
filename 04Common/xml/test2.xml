@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<计划 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="test1.xsd">
+    <类型>测试</类型>
+    <执行人>luhha</执行人>
+</计划>
