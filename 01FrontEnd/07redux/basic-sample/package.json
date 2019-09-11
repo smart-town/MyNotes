@@ -9,9 +9,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "redux": "^4.0.4"
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "cross-fetch": "^3.0.4",
+    "css-loader": "^3.2.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
-  "babel":{
-    "presets": ["@babel/env"]
+  "babel": {
+    "presets": [
+      "@babel/env"
+    ]
   }
 }
