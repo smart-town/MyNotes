@@ -88,8 +88,8 @@ function postsBySubreddit(state = {}, action) {
   }
 }
 const todoApp = combineReducers({
-  // visibilityFilter,
-  // todos,
+  visibilityFilter,
+  todos,
   postsBySubreddit,
   selectedsubreddit,
 })

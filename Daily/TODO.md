@@ -10,4 +10,7 @@ TODO /**
 * 9. 关于 maven 私服的配置（配置多个私服，哪个能用用哪个）
 * 10. npm package.json [整体了解](http://caibaojian.com/npm/files/package.json.html)
 * 11. webpack 由来。。。。
+* 12. 复习一下设计模式中关于装饰、适配器、外观模式，感觉 redux 的中间件一定程度上似乎与其是同一理念。
+* 13. webpack 总览以及笔记整理
+* 14. react 中的 Provider
 */
