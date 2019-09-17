@@ -20,17 +20,17 @@ Context 主要的应用场景在于很多不同层级的组件需要访问同样
 
 ### `React.createContext`.
 
-`const {Provider, Consumer} = React.createContext(defaultValue)`
+`const MyContext  = React.createContext(defaultValue)`
 
-创建一对`{Provider,Consumer}`当 React 渲染 context 组件 Consumer 时，它将从组件树最上层中最接近的匹配的`Provider`读取当前的`context`值。
+创建一个 Context 对象，当 React 渲染一个订阅了这个 Context 对象的组件时，这个组件会从组件树中离自身最近的那个匹配的 Provider 中读取到当前的 context 值。
 
-如果上层的组件树没有一个匹配的`Provider`，而此时你需要渲染一个 Consuemr 组件，那么可以用到`defaultValue`，这有助于不封装它们的情况下对组件进行测试
+**只有**当组件所处的树中**没有**匹配到 `Provider`时，其`defaultValue`才会生效。这有助于在不使用 `Provider`包装组件的情况下对组件进行测试。
 
 ### `Provider`
 
 `Provider value={/*somevalue*/}`
 
-React 组件允许 Consumer 订阅 context 的改变。接收一个`value`属性传递给`Provider`的后代Consumer，一个`Provider`可以联系到多个`Consumer`。
+
 
 ### `Consumer`
 
