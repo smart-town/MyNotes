@@ -39,7 +39,7 @@ File 对象代表一个文件，用来读写文件信息，它继承了`Blob`对
 - `onload`: `load`事件监听函数，通常在该函数中使用`result`属性获取内容
 - `onloadstart`
 - `onloadend`
-- `onprogress`: `progress`事件舰艇函数（读取操作进行中）
+- `onprogress`: `progress`事件监听函数（读取操作进行中）
 
 方法
 

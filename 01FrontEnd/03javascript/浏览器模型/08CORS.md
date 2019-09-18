@@ -16,7 +16,7 @@ CORS 请求分为两种：**简单请求**和**非简单请求**
 
 请求的条件？简单来说：
 - 请求方式：HEAD、GET、POST 之一
-- 头信息限制：`Accept`、`Accept-Language`、`Content-Language`、Content-Type`(只限于三个值:`application/x-www-form-urlencoded`、`multipart/form-data`、`text/plain`)
+- 头信息限制：`Accept`、`Accept-Language`、`Content-Language`、`Content-Type`(只限于三个值:`application/x-www-form-urlencoded`、`multipart/form-data`、`text/plain`)
 
 这样划分的原因是，表单在历史上一直可以跨域发出请求，简单请求就是表单请求，浏览器沿袭了传统的处理方式，不把行为复杂化，否则开发者可能转用表单，规避 CORS 的限制。对于非简单请求，浏览器会采用新的处理方式。
 

@@ -12,8 +12,9 @@
         <legend>{{title}}</legend>
         <input type="file" v-on:change="receive($event)"/><br/>
         <span v-if="files"><pre>{{readData}}</pre></span><span v-else>还未选择文件😟</span>
+        <a id="testDataUrl" href="#">测试URL.createObjectURL()</a>
     </fieldset>
-    <script src="../../00test/resource/vue.js"></script>
+    <script src="../../../00test/resource/vue.js"></script>
     <script>
         let vm = new Vue({
             el: "#root",
@@ -35,6 +36,9 @@
                     console.log(srcBlob.lastModifiedDate + "----" + srcBlob.name);
                     let reader = new FileReader() ;
                     reader.readAsText(srcBlob);
+                    
+                    document.getElementById("testDataUrl").setAttribute("href",URL.createObjectURL(srcBlob));
+
                     reader.onload=function(){
                         console.log("readover");
                         var text = reader.result;
