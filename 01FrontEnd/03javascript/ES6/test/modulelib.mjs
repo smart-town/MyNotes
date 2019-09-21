@@ -1,12 +1,14 @@
-let counter = 1;
+export let counter = 1;
 function incCounter() {
     counter++;
 }
 function getCounter() {
     return counter;
 }
+
+
 export default {
-    counter: counter,
+    counter,
     incCounter: incCounter,
     getCounter: getCounter
 }

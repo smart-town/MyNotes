@@ -1,12 +1,13 @@
-var counter = 1;
+var value={counter:1}
 function incCounter(){
-    counter++;
+    value.counter++;
 }
 function getCounter(){
-    return counter;
+    return value.counter;
 }
 module.exports = {
-    counter: counter,
+    counter: value.counter,
     incCounter: incCounter,
-    getCounter: getCounter
+    getCounter: getCounter,
+    value
 }

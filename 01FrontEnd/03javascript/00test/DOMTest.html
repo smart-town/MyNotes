@@ -9,7 +9,7 @@
 <body>
     <div class="show"></div>
     <div class="tips" id="tips"></div>
-    <button onclick="addToRoot()">add</button>
+    <button onclick="addToRoot(event)">add</button>
     <div class="root" id="root"></div>
     <div class="testAppend" id="testAppend"></div>
     <script>
@@ -19,6 +19,7 @@
                 clearInterval(interval);
             }
         },100);
+        let flag = 1;
 
         let tips = document.getElementById("tips") ;
         let root = document.getElementById("root") ;
@@ -27,9 +28,16 @@
         function update(){
             tips.innerHTML = rootContent.length;//动态集合.
         }
-        function addToRoot(){
+        function addToRoot(e){
+            let ev =  e;
             let div = document.createElement("label") ;
-            div.innerHTML = "<span>QaQ</span>";
+            div.innerHTML = `<span>QaQ</span><br/>`;
+            if(flag===1){
+                flag++;
+               div.innerHTML += (`<span>${"tes about event listener function--[this]:"}</span><br/>`)
+               console.log(ev.target);
+               console.log(ev.currentTarget);
+            }
             root.appendChild(div)
             update();
         }
