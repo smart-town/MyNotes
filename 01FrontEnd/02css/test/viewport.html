@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,14 +21,39 @@
           width: 100px;
           height: 100px;
           position:fixed;
-          left: 0;
+          left: 10px;
           bottom: 10px;
+      }
+      .info {
+          display: grid;
+          justify-content: center;
+          align-content: center;
+          background: silver;
+          min-height: 1rem;
       }
     </style>
 </head>
 <body>
     <div class="test1"></div>
+    <div class="info">
+        
+    </div>
+    <input id="test"/>
     <div class="test2"></div>
+    <script>
+        let info = document.getElementsByClassName("info").item(0);
+        info.addEventListener("click",()=>{
+            info.innerHTML=`
+                window.innerHeight:${window.innerHeight}<br/>
+                window.innerWidth:${window.innerWidth}<br/>
+                screen.availHeight:${screen.availHeight}<br/>
+                screen.availWidth:${screen.availWidth}<br/>
+                screen.height:${screen.height}<br/>
+                screen.width:${screen.width}<br/>
+                navigator.userAgent:${navigator.userAgent}<br/>
+            `
+        })
+    </script>
 
 </body>
 </html>
