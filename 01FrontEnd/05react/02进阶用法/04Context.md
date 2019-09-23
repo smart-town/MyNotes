@@ -30,17 +30,23 @@ Context 主要的应用场景在于很多不同层级的组件需要访问同样
 
 `Provider value={/*somevalue*/}`
 
+每个`Context`都会返回一个`Provider`组件，它允许消费组件订阅`context`的变化。`Provider`接收一个`value`属性，传递给消费组件。一个`Provider`可以和多个消费组件有对应关系，多个`Provider`也可以嵌套使用，里层的会覆盖外层的数据。
 
+### Class.contextType
 
-### `Consumer`
+挂载在 class 上的`contextType`属性需要被赋值为一个由`React.createContext()`创建的 Context 对象。这能让你用`this.context`消费最近的 Context 上的那个值。你可以在任意生命周期中访问，包括`render`
 
-`<Consumer>{value => /*render something based on the context value*/}</Consumer>`
+**注意**通过该 API 只能订阅单一 context
 
-一个可以订阅 context 变化的 React 组件
+### Context.Consumer
+```jsx
+<MyContext.Consumer>
+    {value => /*基于 context 渲染*/}
+</MyContext.Consumer>
+```
+这让你能够在**函数式组件**中完成订阅 context。
 
-接收一个**函数作为子节点**，函数接收当前 context 值并返回一个 react 节点。传递给函数的 value 将等于组件树中上层 context 的最近的 Provider 的 value 属性。如果 context 没有 Provider，那么 value 属性将会等于被传递给 createContext() 的 defaultValue
-
-每当 Provider 的值发生改变时，作为 Provider 后代的所有 Consumer 都会重新渲染。
+这需要**函数作为子元素**这种做法。这个函数接收当前的 context 值，返回一个节点。传递给函数的 `value`值等同于往上组件树离这个 context 最近的 Provider 提供的 value 值。
 
 ## 例子
 
