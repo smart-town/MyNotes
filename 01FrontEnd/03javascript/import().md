@@ -29,6 +29,7 @@ import(`./section-modules/${variable}.js`).then(module=>{module.loadPageInfo(mai
 
 `import()`函数可以用在任何地方，不仅仅是模块，非模块的脚本也可以使用。它是运行时执行，也就是说，什么时候运行到这一句，就会加载指定的模块，另外，`import()`函数与所加载的模块没有静态连接关系，这点也与`import`语句不同。其类似与`require`，区别在于前者是异步加载，而后者是同步加载。
 
+关于 `require()`的同步加载，如`a.js`中`require()`在后面的位置，则执行到`require()`时 `a.js`会暂停，然后执行所引用的模块。（似乎当模块已经加载过后则不会再次执行了）。
 ## 适用场合
 
 1. 按需加载
