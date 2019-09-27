@@ -14,6 +14,8 @@ APK 如果使用一个 key 签名，发布时另一个 key 签名的文件将无
 
 可以使用`keytool`生成秘钥，来签名应用程序的`apk`文件。
 
+命令：`keytool -genkey -alias android.keystore -keyalg RSA -validity 20000 -keystore android.keystore`
+
 
 ### 从APK中获取签名信息
 

@@ -8,6 +8,20 @@
 
 采用链式的 then 可以指定一组按照次序调用的回调函数。这时，前一个回调函数有可能返回的还是一个`Promise`对象，这时候，后一个回调函数就会等待该`Promise`对象的状态发生变化，才会被调用。
 
+### 返回值
+
+当一个`Promise`完成(fulfilled)或者失败(rejected)，返回函数将被异步调用（由当前线程循环来调度完成）。具体的返回值依据以下规则：
+- 如果`then`中回调函数返回一个值，那么`then`返回的 Promise 将会成为接收状态，并且将返回的值作为接受状态的回调函数的参数值
+- `then`回调函数没有返回值，那么`then`返回一个接受状态的 Promise，其回调函数参数为`undefined`。
+- `then`回调函数抛出错误，那么`then`返回一个拒绝状态的 Promise，并将抛出的错误作为拒绝状态的回调函数的参数值。
+- `then`回调函数返回一个已经是接受状态的 Promise，那么`then`返回的`Promise`也是接受状态，并且将那个 Promise 的接受状态的回调函数的参数值作为该被返回的 Promise 的接受状态回调函数的参数值。(*then 返回的 Promise 接受态的回调函数也就是 Promise 的 resolve 结果喽，下同*)
+- `then`返回一个拒绝状态`Promise`。那么`then`返回的也是。且参数与上面类似。
+- `then`中的回调函数返回一个未定状态的`Promise`，那么`then`返回的 Promise 也是未定的，并且它的终态与那个 Promise 终态相同。同时，它变为终态时调用的回调函数参数与那个 Promise 变为终态时的回调函数参数相同。
+
+*其实也就是说，当 then中回调函数返回的是一个 Promise 时，此时 then 返回的 Promise 与该 Promise 状态相同，且将会使用回调函数Promise中resolve或reject所带的值作为新 Promise 的then中相应回调函数的参数值（也就是说其实就是同一个Promise叭？）。*
+
+**注意**：如果忽略针对某个状态的回调函数参数，或者提供非函数参数，那么`then`将丢失关于该状态的回调函数信息。但是不会产生错误。如果调用`then`的`Promise`状态已经改变，但是`then`没有指定对应状态的回调函数，那么`then`将创建一个没有经过回调函数处理的新 Promise 对象，这个新 Promise 只是简单接受原 Promise 的终态作为它的终态。
+
 ## Promise.prototype.catch()
 
 `Promise.prototype.catch`是`.then(null,rejection)`或`.then(undefined,rejection)`的别名，用于指定发生错误时的回调函数。
@@ -18,6 +32,8 @@ getJSON('/posts.json').then(function(post){}).catch(fucntion(error){})
 上面代码中，`getJSON`返回一个`Promise`对象，如果该对象的状态变为`resolved`，则会调用`then`方法指定的回调函数；如果异步操作抛出错误，状态就会变为`rejected`，就会调用`catch`方法指定的回调函数。**另外**，`then`方法指定的回调函数，如果运行中抛出错误，也会被`catch`方法捕获。
 
 `Promise`对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误**总会**被下一个`catch`捕获。
+
+*因为`then`语句返回的总是 Promise，如果第一个then中出现错误，则该then返回一个rejected Promise，依此类推*
 
 > 一般来说，**不要**在`then`方法中定义`Reject`状态的回调函数（即`then`的第二个参数），总是使用`catch`方法。即：
 ```js

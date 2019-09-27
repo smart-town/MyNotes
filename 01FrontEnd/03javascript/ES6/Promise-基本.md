@@ -63,7 +63,7 @@ p2.then(result=>console.log(result)).catch(error=>console.log(error));
 【注意】调用`resolve`或`rejected`并不会终结`Promise`参数函数的执行。
 ```js
 new Promise((s,f)=>{
-    r(1);
+    s(1);
     console.log(2);
 }).then(r=>console.log(r));
 //2

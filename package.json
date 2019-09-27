@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/smart-town/MyNotes#readme",
   "dependencies": {
-    "chalk": "^2.4.2"
+    "chalk": "^2.4.2",
+    "cross-fetch": "^3.0.4"
   }
 }
