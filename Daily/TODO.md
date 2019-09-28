@@ -12,6 +12,6 @@ TODO /**
 * 11. webpack 由来。。。。
 * 12. 复习一下设计模式中关于装饰、适配器、外观模式，感觉 redux 的中间件一定程度上似乎与其是同一理念。
 * 13. webpack 总览以及笔记整理
-* 14. react 中的 Provider
+* 14. react 中的 Provider :white_check_mark:
 * 15. 需要找一个 todo app
 */
