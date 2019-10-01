@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MouseEventTest</title>
+    <style>
+        ul li:nth-child(2){
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test About MouseEvent</h1>
+    <ul>
+        <li>click</li>
+        <li>contextmenu</li>
+        <li>dbclick</li>
+        <li>mousedown</li>
+        <li>mouseup</li>
+        <li>mousemove</li>
+        <li>mouseover</li>
+        <li>mouseout</li>
+        <li>mouseenter</li>
+        <li>mouseleave</li>
+    </ul>
+    <script>
+        document.body.addEventListener("contextmenu",contextMenuListener);
+        document.body.addEventListener("click",clickListener);
+        let buttonDes = {
+                "-1": "none key",
+                "0": "left click",
+                "1": "scroll roll",
+                "2": "right click",
+            }
+        function clickListener(e){
+            console.log("click test") ;
+            console.log(buttonDes[e.button+""]);
+        }
+
+        function contextMenuListener(e){
+            console.log(e);
+            
+            console.log(buttonDes[e.button+""])
+            // e.preventDefault();
+        }
+    </script>
+</body>
+</html>

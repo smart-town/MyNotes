@@ -55,3 +55,6 @@ package-lock.json
 
 .sass-cache
 02css/test/*.css*
+
+# Python
+__pycache__
