@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue-Basic</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="root1" v-if="seen" v-cloak>
+        <span>{{message}}</span>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script>
+        let root1Vue = new Vue({
+            el: "#root1",
+            data: {
+                seen: true,
+                message: "cherry",
+            },
+            created: function(){
+                console.log("created Func") ;
+            }
+        })
+        
+    </script>
+</body>
+</html>

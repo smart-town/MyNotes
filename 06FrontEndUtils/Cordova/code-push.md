@@ -64,6 +64,12 @@ ios: `code-push app add appName2 ios cordova`
 3. 发布 app:  
 进入对应的 cordova 工程根目录，执行：`code-push release-cordova appName android`或`code-push release-cordova appName2 ios`即可推送最新工程到服务器。
 
+其他常用命令：
+```shell
+code-push app ls
+code-push deployment ls appName -k
+```
+
 ## 前台工程使用`code-push`
 
 上述已经在 server 端新增了一个 app，本地 cordova 工程需要使用`code-push`进行适配以达到更新的目的。本地 Cordova 工程基本配置：
