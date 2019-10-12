@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>V-For-Test</title>
+</head>
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        <span v-for="(item,index) in basic" :style="{'color':color[index]}">{{item}} {{color[index]}}{{index === basic.length-1 ? "":"-"}}</span>
+        <br/>
+        <span v-for="(item,index) in basic" :key="item" :style="{'color':color[index]}">{{item}} {{color[index]}}{{index === basic.length-1 ? "":"-"}}</span>
+        <button @click="change">change</button>
+        <br/>
+        <span v-for="(item,name) in basicObj">{{name}}:{{item}}&nbsp;&nbsp;</span>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data: {
+                title: "Test About V-For",
+                basic: [1,2,3,4,5],
+                basicObj: {
+                    name: "hhg",
+                    sex: "male",
+                },
+                color: ['orange','red','blue','yellow','purple'],
+            },
+            methods: {
+                change(){
+                    this.basic = this.basic.reverse();
+                }
+            }
+        })
+    </script>
+</body>
+</html>

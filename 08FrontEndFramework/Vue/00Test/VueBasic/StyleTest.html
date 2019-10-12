@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StyleTest</title>
+    <style>
+        .class1{
+            background: red;
+        }
+        .class2{
+            border: 1px solid black;
+        }
+        .class3{
+            color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <span :class="className">TestClass</span>
+        <button @click="setClass('class1')">class1</button>
+        <button @click="setClass('class2')">class2</button>
+        <button @click="setClass('class3')">class3</button>
+        <button @click="setClass">clearStyle</button>
+
+        <br/>
+        <span :style="{color:'white',background:'purple'}">Test Inline Style-Object.</span>
+
+        <br/>
+        <span :style="[normal,active]" v-html="'<span :style=[obj,obj2]> test'"></span>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data: {
+                className:{
+                    class1: false,
+                    class2: false,
+                    class3: false
+                },
+                normal: {
+                    background: "yellow",
+                    color: "blue",
+                    "border-radius": "15px",
+                    "text-align": "center",
+                },
+                active: {
+                    color: "red",
+                    display: "block",
+                    width: "100px",
+                    height: "30px",
+                }
+            },
+            methods:{
+                setClass(name){
+                    console.log(name)
+                    if(typeof name === "string") {
+                        this.className[name]=true;
+                    } else {
+                       Object.keys(this.className).forEach((value)=>{
+                           this.className[value] = false;
+                       })
+                    }
+                    console.log(this.className)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IfTest</title>
+</head>
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        <span>condition:{{flag}} <button @click="change">change</button></span>
+        <br/>
+        <span v-if="flag">condition is true<input value="ok" key="1"></span>
+        <span v-else>Condition False <input value="ok" key="2"></span>
+
+        <template v-if="flag">
+            Use &lt;template&gt; when it true, template will not render
+        </template>
+
+        <br/>
+        <span v-show="flag" style="display:block">v-show just DISPLAY:NONE or Other</span>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data: {
+                title: "Test About Condition",
+                flag: true,
+            },
+            methods: {
+                change(){
+                    this.flag = !this.flag;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

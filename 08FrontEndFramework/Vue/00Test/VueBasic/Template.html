@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template</title>
+</head>
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        <span>condition:{{flag}} <button @click="change">change</button></span>
+        <br/>
+        <span v-if="flag">condition is true</span>
+        <span v-else>Condition False</span>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data: {
+                title: "Test About Title",
+                flag: true,
+            },
+            methods: {
+                change(){
+                    this.flag = !this.flag;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
