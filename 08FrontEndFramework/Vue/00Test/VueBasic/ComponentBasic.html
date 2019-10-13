@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ComponentBasic</title>
+</head>
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        <my-header @input="testDeal" title="HHG">Cherry~</my-header> 
+        <br/>
+        <template v-if="getInfo">
+            Get Sub Component Send Info: {{getInfo}}
+        </template>
+        <template v-else>
+            Sub Component Send null...
+        </template>
+        <my-footer>HHG's@</my-footer>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script>
+        Vue.component("my-header",{
+            props: ['title'],
+            data: function(){
+                return {
+                    count: 0,
+                    content: "[my-header]value"
+                }
+            },
+            methods: {
+                test: function(){
+                    console.log(`[subcomponent] test emit`);
+                    this.$emit('input',this.content);
+                }
+            },
+            template: `
+                <div>
+                    <strong>Test Slot:</strong><slot></slot>
+                    <br/>
+                    <button @click="count++">You have click {{count}} times [prop:{{title}}]</button>
+                    <br/><input v-model="content"><button @click="test">EMIT</button>
+                </div>
+                `,
+        })
+        const myFooter = {
+            template:`
+                <footer>This is Footer of <slot></slot></footer>
+            `
+        }
+        let root = new Vue({
+            el: "#root",
+            components: {
+                myFooter,
+            },
+            data: {
+                title: "Test About Component",
+                flag: true,
+                getInfo: '',
+            },
+            methods: {
+                change(){
+                    this.flag = !this.flag;
+                },
+                testDeal(val){
+                    console.log("GetInfo:"+val)
+                    this.getInfo = val;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
