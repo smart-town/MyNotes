@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event</title>
+</head>
+
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        parent:
+<pre>
+component1:{{component1}},
+</pre>
+        <br/>
+        <event-component1 v-model="component1" v-on:my-say="component1Listen"></event-component1> 
+        <br/>
+        <event-component2 v-model="component2" v-bind:title.syn c="com2" @change.native="change" v-on:focus.native="com2Func"></event-component2>
+        title:{{com2}}
+        <br/>
+        <test></test>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script src="./EventComponent1.js"></script>
+    <!-- <script type="module"> -->
+    <script>
+        // <script src="https://unpkg.com/vue/dist/vue.js"><script>
+        // import components from './EventComponent1.js';
+        console.log(components)
+        Object.keys(components).forEach((value)=>{
+            Vue.component(value, components[value])
+        })
+        let root = new Vue({
+            el: "#root",
+            data: {
+                title: "Test About Event",
+                flag: true,
+                component1: "cherry",
+                component2: "test2",
+                com2: "june",
+            },
+            compuetd:{
+                change: function(val){
+                    console.log(val)
+                }
+            },
+            methods: {
+                change() {
+                    this.flag = !this.flag;
+                },
+                component1Listen(val){
+                    console.log(`component1:`, val);
+                },
+                com2Func(){
+                    console.log(arguments);
+                    console.log("On Focus...") ;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

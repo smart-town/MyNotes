@@ -153,5 +153,6 @@ Python 中允许通过一些特殊的方法为某种类型或者数据结构自�
 ```python
 score = ['name':"cherry", "sex": "male"]
 print(score['name'])
-
+for ele in scores:
+    print("%s\t--->\t%s"%(elem,scores[elem]))
 ```
