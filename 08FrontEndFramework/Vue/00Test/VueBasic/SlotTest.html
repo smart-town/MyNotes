@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SlotTest</title>
+</head>
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        <slot-component1>Cherry~Slot~</slot-component1>
+        <hr/>
+        <slot-component2 :name="com2Prop">Com2:{{com2}}-{name}</slot-component2>
+        <hr/>
+        <slot-component3></slot-component3>
+        <hr/>
+        <slot-component4>
+            My-Main-Content
+            <template v-slot:header>HEADER</template>
+            <template v-slot:footer>FOOTER@LuHH</template>
+        </slot-component4>
+        <hr/>
+        <slot-component5>
+            <template v-slot:default="test">
+                {{test.random}}---RANDOM!
+            </template>
+        </slot-component5>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script src="./SlotComponent.js"></script>
+    <script>
+        Object.keys(components).forEach((name)=>{
+            Vue.component(name,components[name]);
+        })
+        let root = new Vue({
+            el: "#root",
+            data: {
+                title: "Test About Slot",
+                com2: "COM2 SLOT TEST",
+                com2Prop: "com2 prop test"
+            },
+            methods: {
+                
+            }
+        })
+    </script>
+</body>
+</html>

@@ -18,7 +18,7 @@ component1:{{component1}},
         <br/>
         <event-component1 v-model="component1" v-on:my-say="component1Listen"></event-component1> 
         <br/>
-        <event-component2 v-model="component2" v-bind:title.syn c="com2" @change.native="change" v-on:focus.native="com2Func"></event-component2>
+        <event-component2 v-model="component2" v-bind:title.sync="com2" @input="$emit('input',$event.target.value)" @change.native="change" v-on:focus.native="com2Func"></event-component2>
         title:{{com2}}
         <br/>
         <test></test>

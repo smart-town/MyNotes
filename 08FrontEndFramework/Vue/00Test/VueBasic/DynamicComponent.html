@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DynamicComponent</title>
+</head>
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        选择组件:
+        <select v-model="myComponent">
+            <option v-for="value in ComponentArr" :value="value">{{value}}</option>
+        </select>
+        
+        <hr/>
+
+        <component :is="myComponent"></component>
+        
+        <hr/>
+        测试&lt;keep-alive&gt;
+        <keep-alive>
+            <component :is="myComponent"></component>
+        </keep-alive>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script src="./Utils.js"></script>
+    <script src="./DynamicComponent.js"></script>
+    <script>
+        utils.register(components)
+        let root = new Vue({
+            el: "#root",
+            data: {
+                title: "Test About Dynamic Component",
+                flag: true,
+                myComponent: 'MyHeader',
+                ComponentArr: Object.keys(components), 
+            },
+            methods: {
+                change(){
+                    this.flag = !this.flag;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -9,7 +9,7 @@
 <body>
     <div id="root">
         <h3>{{title}}</h3>
-        <my-content v-bind:title="subtitle" temp="june"/>
+        <my-content v-bind:title="subtitle" temp="june" />
         <br/>
     </div>
     <script src="../../../../00test/resource/vue.js"></script>
@@ -22,6 +22,8 @@
                test: function(){
                     console.log("test Get $attrs")    
                     console.log(this.$attrs)
+                    console.log(this._props);
+                    console.log(Object.keys(this))
                } 
             },
             template: `

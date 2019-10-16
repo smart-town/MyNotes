@@ -29,7 +29,7 @@ let eventComponent2 = {
     template: `<div>
             <header style="font-size:1.5rem;">Component2</header>
             <label>{{title}}</label><input v-bind="$attrs" v-bind:value="value" v-on="allListeners"/>VALUE:{{value}}
-            <br/>Test .sync:<input v-model="title">
+            <br/>Test .sync:<input v-bind:value="title" @input="$emit('update:title',$event.target.value)">
         </div>`,
     computed: {
         allListeners(){
