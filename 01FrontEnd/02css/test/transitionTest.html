@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>transition-test</title>
+    <meta charset="utf-8">
+    <style>
+        .main {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .cherry {
+            transition-property: all;
+            transition-duration: 1.5s;
+            <!-- transition-timing-function: linear; -->
+            transition-delay: 0.5s;
+            border-radius: 50px;
+            background: red;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="mine" class="main"></div><button onclick="transition()">test</button><button onclick="window.location.reload()">reset</button>
+    <br/><input type="number">
+    <script>
+        let obj = document.getElementById("mine")
+        
+        
+        function transition(){
+            console.log("test~transition")
+            obj.setAttribute("class","main cherry")
+            console.log(obj.getAttribute("class"))
+        }
+        
+        function whentransitionover() {
+            console.log(arguments);
+            console.log("transition ok")
+            obj.setAttribute("class", "main")
+        }
+        obj.addEventListener("transitionend",whentransitionover,true);
+        
+    </script>
+</body>
+</html>
