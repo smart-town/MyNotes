@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SpecialCondition</title>
+</head>
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        <strong>test Use $root</strong>
+        <temp-container>
+            <use-root></use-root>
+        </temp-container>
+
+        <strong>Test ref & $refs ignore...</strong>
+        <hr/>
+
+        <strong>Test provide & inject</strong>--> getRootInfo Function ~~~ in the use-root Action.
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script src="./SpecialCondition.js"></script>
+    <script src="./Utils.js"></script>
+    <script>
+        utils.register(components)
+        let root = new Vue({
+            el: "#root",
+            data: {
+                title: "Test About SpecialCondition",
+            },
+            provide: {
+                getRootInfo: ()=>{alert("Root Info~")}
+            },
+            methods: {
+            }
+        })
+    </script>
+</body>
+</html>
