@@ -9,9 +9,21 @@
 <body>
     <div id="root">
         <h3>{{title}}</h3>
+        <input v-focus="'CherryA'"/>
     </div>
     <script src="../../../../00test/resource/vue.js"></script>
     <script>
+        Vue.directive("focus", {
+            inserted: function(el, binding){
+                console.log(el.parentElement)
+                el.focus();
+                console.log(binding)
+                el.value = binding.value ? binding.value : "Default"
+                if(binding.value === "Cherry") {
+                    el.parentElement.removeChild(el)
+                }
+            }
+        })
         let root = new Vue({
             el: "#root",
             data: {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transition</title>
+    <style>
+        .v-enter {
+            background: red;
+        }
+        .v-enter-active {
+            transition: all .5s ease;
+        }
+        .v-enter-to {
+            background: red;
+        }
+        .v-leave {
+            background: purple;
+        }
+        .v-leave-active {
+            transition: all .8s linear;
+        }
+        .v-leave-to {
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        <span>condition:{{flag}} <button @click="change">change</button></span>
+        <br/>
+        <transition>
+            <span v-if="flag">Cherry~~~~~</span>
+        </transition>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script>
+        let root = new Vue({
+            el: "#root",
+            data: {
+                title: "Test About Transition",
+                flag: true,
+            },
+            methods: {
+                change(){
+                    this.flag = !this.flag;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
