@@ -1,0 +1,26 @@
+source ./colors # import color function, success->green, info->blue, error->green
+
+info "-------------------------------------"
+info "1.  start nginx"
+info "2.  reload nginx"
+info "3.  open nginx conf"
+info "4.  wait..."
+info "-------------------------------------"
+read -p "input your choose:" choose
+
+if test $choose=4
+then
+    error "waitwait T_T"
+fi
+
+case $choose in
+1)
+    success "will start nginx..."
+    ;;
+"4")
+    success ok
+    ;;
+*)
+    error ha?
+    ;;
+esac

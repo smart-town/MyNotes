@@ -1,0 +1,7 @@
+echo "FOR webapp utils"
+root="/app/dcits/app"
+echo $root
+rm -rf ${root}/html
+unzip ${root}/build.zip
+mv build html
+# cp build.zip build.bak
