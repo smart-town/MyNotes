@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RenderFunc</title>
+    <style>
+        .testDiv {
+            color: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h3>{{title}}</h3>
+        <anchored-heading :level="2">June</anchored-heading>
+        <anchored-heading :level="3">June3</anchored-heading>
+        <template v-for="value in 10">
+            <my-test></my-test>
+        </template>
+    </div>
+    <script src="../../../../00test/resource/vue.js"></script>
+    <script>
+        Vue.component("anchored-heading", {
+            render: function(createElement) {
+                return createElement(
+                    'h'+this.level,
+                    this.$slots.default
+                )
+            },
+            props: {
+                level: {
+                    type: Number,
+                    required: true
+                }
+            }
+        })
+        Vue.component("my-test", {
+            render: function(createElement) {
+                return createElement(
+                    {
+                        template: `<div>{{name}}:{{Math.round(Math.random()*100)}}`,
+                        data: function(){
+                            return {
+                                name: "HHG",
+                            }
+                        }
+                    },
+                    {
+                        class: {
+                            testDiv: true,
+                        }
+                    }
+                )
+            }
+        })
+        let root = new Vue({
+            el: "#root",
+            data: {
+                title: "Test About Render&JSX",
+            },
+            methods: {
+            }
+        })
+    </script>
+</body>
+</html>
