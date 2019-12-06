@@ -1,4 +1,4 @@
-echo "FOR webapp"
+echo "FOR webapp utils"
 root="/app/dcits/app"
 echo $root
 rm -rf ${root}/html

@@ -13,6 +13,10 @@ IF judge (
 )
 ```
 
+- `IF "参数"=="字符串" 命令`
+- `IF exist 文件名 命令`
+- `IF errorlevel / if not errorlevel 数字 命令`
+
 ### GOTO
 
 `:LABEL` 和 `GOTO` 的协同使用

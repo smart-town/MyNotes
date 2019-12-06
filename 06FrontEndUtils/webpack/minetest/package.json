@@ -1,0 +1,15 @@
+{
+  "name": "minetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "base": "webpack --config ./config/webpack.config.base.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.5"
+  }
+}

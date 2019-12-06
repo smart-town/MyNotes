@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>radar-echarts</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="main" style="width:700px; height: 500px"></div>
+    <script src="../../../00test/resource/echarts/echarts.js"></script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '基础雷达图'
+            },
+            tooltip: {
+				
+			},
+            legend: {
+				selectedMode: 'single',
+			},
+			radar: {
+				splitNumber: 3,
+				indicator: [
+					{name:'lover', max: 1, color: 'pink', },
+					{name:'enemy', max: 10, color: 'red', },
+					{name: 'friends', max: 10, color: 'blue',},
+				],
+			},
+			series: [
+				{
+					type: 'radar',
+					name: 'mine',
+					label: {
+						show: false	,
+					},
+					data:[
+						{
+							value: [1, 2, 4],							
+							name: 'mine',
+							symbol: 'circle',
+							areaStyle: {
+								color: "lightblue",
+								opacity: 0.6,
+								//shadowColor: 'rgba(0, 0, 0, 0.8)',
+								//shadowBlur: 10,
+							},
+							tooltip: {
+								formatter: "{b0}<br/>{b1}<br/>{b2}",
+							},
+						},
+						{
+							value: [0, 4, 4],
+							name: 'mine2'
+						}
+					],
+				},
+				{
+					type: 'radar',
+					name: 'mine2',
+					label: {
+						show: false	,
+					},
+					data:[
+						{
+							value: [0.5, 5, 2],							
+							name: 'mine2',
+							symbol: 'circle',
+							areaStyle: {
+								color: "purple",
+								opacity: 0.6,
+								//shadowColor: 'rgba(0, 0, 0, 0.8)',
+								//shadowBlur: 10,
+							},
+							
+						},
+						
+
+					],
+				},
+				
+			],
+           
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>
