@@ -13,15 +13,55 @@
 </head>
 <body>
     <div id="root1" v-if="seen" v-cloak>
-        <span>{{message}}</span>
+        <span>{{message}}</span><button @click="showdata">showdata</button>
+        <pre>
+        <span>{{JSON.stringify(testData)}}</span>
+        </pre>
+        <sub-component :father="testData" :fathermessage="message"/>
     </div>
     <script src="../../../../00test/resource/vue.js"></script>
     <script>
+        let subComponent = {
+            props: ['father', 'fathermessage'],
+            data: function() {
+                return {
+                    title: 'SubComponent',
+                    data: this["father"].message,
+                    data2: this.fathermessage,
+                }
+            },
+            watch: {
+                data(newV) {
+                    console.log("--<<", newV);
+                    this["father"].message = newV;
+                    this["father"].rand = Math.ceil(Math.random()*20)
+                },
+                data2(newV) {
+                    this.fathermessage = newV;
+                }
+            },
+            template: `
+                <div>
+                    <h5>{{title}}</h5>--->>>
+                    props:<input v-model="data">
+                    <br/>message:<input v-model="data2">
+                </div>
+            `,
+        }
+        Vue.component("sub-component", subComponent);
         let root1Vue = new Vue({
             el: "#root1",
             data: {
                 seen: true,
                 message: "cherry",
+                testData: {
+                    message: "ok",
+                }
+            },
+            methods: {
+                showdata() {
+                    alert(JSON.stringify(this.$data, null, 2))
+                }
             },
             created: function(){
                 console.log("created Func") ;

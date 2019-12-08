@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>测试跨域</title>
+        <script src="../../../00test/resource/axios.min.js"></script>
+    </head>
+    <body>
+        <button onclick="test()">test</button> Please see see console. Test absolute proxy<br/>
+        <button onclick="test2()">test2</button> Test relative proxy
+        <script>
+            let url = "http://127.0.0.1/test/entry1";
+            let param = {name: "cherry"}
+            function test() {
+                axios.post(url, param)
+                    .then(v => {
+                        console.log("[success]", v);
+                    })
+                    .catch(e => {
+                        console.log("[error]", e);
+                    })
+            }
+            function test2() {
+                axios.post("http://127.0.0.1/test2/entry1", {name:"HHGG"})
+                    .then(v => {
+                        console.log("[test2 success]", v);
+                    })
+                    .catch(e => {
+                        console.log("[test2 error]", e);
+                    })
+            }
+        </script>
+    </body>
+</html>

@@ -9,20 +9,30 @@
 <body>
     <div id="root">
         <h3>{{title}}</h3>
-        <input v-focus="'CherryA'"/>
+        <!-- <input v-focus="'CherryA'"/> -->
+        <my-component v-focus="'cherry'"></my-component>
     </div>
     <script src="../../../../00test/resource/vue.js"></script>
     <script>
         Vue.directive("focus", {
             inserted: function(el, binding){
-                console.log(el.parentElement)
-                el.focus();
-                console.log(binding)
-                el.value = binding.value ? binding.value : "Default"
+                console.log(`parentElement:`,el.parentElement)
+                // el.focus();
+                console.log(`binding:`, binding)
+
+                console.log(`el`, el)
+                // el.value = binding.value ? binding.value : "Default"
                 if(binding.value === "Cherry") {
                     el.parentElement.removeChild(el)
                 }
             }
+        })
+        Vue.component("my-component", {
+            template: `
+                <div>
+                    THIS IS MY-COMPONENT
+                </div>
+            `,
         })
         let root = new Vue({
             el: "#root",
