@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "analyse": "webpack --config ./config/webpack.config.base.js  --json --profile> stats.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "base": "webpack --config ./config/webpack.config.base.js"
   },
