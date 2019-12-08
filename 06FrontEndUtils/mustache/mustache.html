@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MustacheTest</title>
+    <script src="../../00test/resource/mustache.js"></script>
+    <style>
+        .my-heart {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px dashed pink;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body onload="loadUsers()">
+    <div id="target">Loading...</div>
+    <script id="template" type="x-tmpl-mustache">
+        <div class="my-heart">
+        Hello, I am {{name}}, And I love you so much.{{line}}{{&line}}
+        I love {{lover}} absolutely.
+        
+        </div>
+        Reason:
+        <ul>
+            {{#reasons}}
+                <li>{{reason}}</li>
+            {{/reasons}}
+        </ul>
+    </script>
+    <script>
+        let view = {
+            title: "HHG",
+            say: function () {
+                return 'I Love You.'
+            }
+        }
+        let template = `
+            {{title}}: {{say2}}
+        `;
+        let output = Mustache.render(template, view);
+        let divE = document.createElement("div")
+        divE.innerText = output;
+        document.body.appendChild(divE);
+
+        function loadUsers() {
+            var template = document.getElementById("template").innerHTML;
+            Mustache.parse(template);
+            let data = {
+                name: "HHG",
+                lover: "cherry",
+                line: "<br/>",
+                reasons: [
+                    {'reason': 'love'},
+                    {'reason': 'love'},
+                    {'reason': 'love'},
+                ]
+            }
+            let rendered = Mustache.render(template, data)
+            document.getElementById("target").innerHTML = rendered;
+        }
+    </script>
+</body>
+
+</html>
