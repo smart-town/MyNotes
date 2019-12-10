@@ -2,7 +2,7 @@
 
 Maven 构建生命周期定义了一个项目构建跟发布的过程
 
-一个典型的 Maven 构建生命周期是由这几个阶段构成的：
+一个典型的 Maven 构建生命周期是由这几个**阶段**构成的：
 
 开始-> validate -> compile -> test -> package -> verify -> install -> deploy -> 结束
 
@@ -23,7 +23,7 @@ Maven 构建生命周期定义了一个项目构建跟发布的过程
 一个插件目标代表一个特定的任务，比构建阶段更为精细。这有助于项目的构建和管理。这些目标可能被绑定到多个阶段或者无绑定。不绑定到任何构建阶段的目标可以在构建生命周期之外通过**直接调用**执行，这些目标的执行顺序取决于调用目标和构建阶段的顺序。
 
 如：clean 和 package 是构建阶段，dependency:copy-dependencies 是目标。
-`mvn clean dependency:copy-dependencies package`。这里的 clean 阶段将先会被执行，然后目标执行，最终 package 阶段被执行。
+`mvn clean dependency:copy-dependencies package`。这里的 clean 阶段将先会被执行，然后`dependency:copy-dependencies`目标执行，最终 package 阶段被执行。
 
 ## Clean 生命周期
 
