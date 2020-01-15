@@ -1,5 +1,12 @@
 var fs = require('fs');
 var path = require('path');
+
+function test1() {
+	const testP = path.join("C:/users/luhha/Desktop/test");
+	console.log(fs.existsSync(testP))
+	fs.rmdirSync(testP, {recursive: true})
+}
+test1()
 //异步读取
 /*
 fs.readFile('fstest.js', function (err, data) {
@@ -35,7 +42,7 @@ console.log("over");*/
 for(let x of array1){
 	console.log(x);
 } */
-
+/*
 function checkExist(objPath, flag=0){
     let exist = fs.existsSync(objPath);
     if (flag === 1 || exist) {
@@ -58,3 +65,4 @@ function createPath(objArr,length){
     }
 }
 console.log(checkExist(path.join("E:\\","cherry","okkJune")));
+*/
