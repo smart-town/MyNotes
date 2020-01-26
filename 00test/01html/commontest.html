@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CommonTest</title>
+	<meta charset="utf-8"/>
+	<meta lang="zh-Hans"/>
+</head>
+<body>
+	<div class="cherry"></div>
+	<script>
+		var initialCss = function() {
+			let head = document.head;
+			console.log(head);
+			head.innerHTML += '<style>.cherry{height: 20px; border: 1px solid black;}</style>'
+		}
+		initialCss();
+	</script>
+</body>
+</html>
