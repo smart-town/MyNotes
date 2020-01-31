@@ -1,3 +1,4 @@
+import module2
 def hello():
     print("Hello! This is module1")
 
