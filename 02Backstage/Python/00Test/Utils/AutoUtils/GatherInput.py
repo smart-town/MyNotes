@@ -14,7 +14,7 @@ class GatherInput(object):
 class GatherFileInput(GatherInput):
     def gatherInputContent(self):
         print("根据配置文件内容获取基础信息")
-        with open(self.config["path"]) as f:
+        with open(self.config["path"], encoding="utf-8") as f:
             info = json.load(f)
         return info
 

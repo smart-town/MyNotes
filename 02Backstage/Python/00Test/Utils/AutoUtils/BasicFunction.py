@@ -1,17 +1,18 @@
 # Function Basic.
-from sys import stdin
-from subprocess import Popen, PIPE
+import subprocess
+import ColorPrint
+from Scp import LocalCopy
 
-myIn = open("testInput", "r")
-stdin = myIn
-# myIn.write("cherry\n")
-# p = Popen("ssh root@192.168.81.132", shell=True)
-p = Popen("ls", shell=True)
-# p.stdin.write(bytes('root\n'))
-# p.stdin.write(bytes('ls\n'))
-# p.stdin.write(bytes('exit\n'))
+class NormalExecute(object):
+    @staticmethod
+    def execute(orders, options=""):
+        for order in orders:
+            ColorPrint.info(">>>start execute [{}]".format(order))
+            result = subprocess.run(order, shell=True)
+            if result.returncode != 0:
+                ColorPrint.error(">>>execute {} error!".format(result.args))
+            else:
+                ColorPrint.info(">>>end execute [{}]".format(order))
 
-stdin.readline()
-# stdin.write(bytes("ssh root@192.168.81.132", encoding="utf-8"))
-p.wait()
-print("p stdout:", p.stdout, "p stdin:", p.stdin)
+if __name__ == "__main__":
+    NormalExecute.execute(["dir /B .", "dir /B C:\\Users\\luhha\\Desktop\\"], "")

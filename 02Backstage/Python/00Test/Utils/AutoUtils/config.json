@@ -7,5 +7,35 @@
         "host": "192.168.81.132",
         "user": "smalltown",
         "password": "it.is.root."
-    }
+    },
+    "tasks": [
+        {
+            "des": "复制本机内容到远程主机",
+            "schemes": [
+                {
+                    "order": "dir /B C:\\Users\\luhha\\Desktop"
+                },
+                {
+                    "order": "dir /B C:\\Users\\luhha\\Desktop\\work"
+                }
+            ]
+        },
+        {
+            "des": "执行本地复制模块 LocalModule",
+            "schemes": [
+                {
+                    "module": "LocalCopy",
+                    "options": ["C->", "->D"]
+                }
+            ]
+        },
+        {
+            "des": "复制远程主机",
+            "schemes": [
+                {
+                    "order": "scp C:\\Users\\luhha\\Desktop\\test.cmd root@192.168.81.132:/home/smalltown/Desktop"
+                }
+            ]
+        }
+    ]
 }
