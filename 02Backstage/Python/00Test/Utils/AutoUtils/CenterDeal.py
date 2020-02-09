@@ -45,7 +45,13 @@ class CoreDeal(object):
             if "order" in list(scheme):
                 BasicFunction.NormalExecute.execute((scheme["order"],))
             else:
-                print("modules:", dir(BasicFunction))
+                basicFunctionModules = [str(i) for i in dir(BasicFunction)]
+                hasFunc = ("module" in scheme) & (scheme["module"] in basicFunctionModules)
+                if hasFunc:
+                    getattr(BasicFunction, scheme["module"])(*scheme["options"]).execute()
+                else:
+                    ColorPrint.error("Not Support...", scheme["module"])
+                
         ColorPrint.info(">>> END: {}".format(task["des"]))
 
     def dealThings(self):

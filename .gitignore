@@ -58,3 +58,7 @@ package-lock.json
 
 # Python
 __pycache__
+
+## C
+
+*.exe

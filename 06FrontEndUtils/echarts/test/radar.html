@@ -19,75 +19,75 @@
 
         // 指定图表的配置项和数据
         var option = {
-            title: {
-                text: '基础雷达图'
-            },
-            tooltip: {
-				
-			},
-            legend: {
-				selectedMode: 'single',
-			},
+			color: ['blue'],
+            
 			radar: {
-				splitNumber: 3,
+				splitNumber: 7,
+				name: {
+					color: "#333333",
+					formatter: function(value, indicator) {
+						console.log(value, "\n", indicator, "\n")
+						let result=value;
+						switch(value){
+							case '发展潜能':
+								result = '{a|' + value + '}'
+								break;
+							case ' 考核':
+								break;
+							case '客户经营':
+								break;
+							case '客户拓展':
+								break;
+							case '学习':
+								break;
+						}
+						return result;
+					},
+					rich: {
+						a: {
+							backgroundColor: {
+								image: 
+							},
+							width: 10,
+							height: 10,
+						},
+						b: {
+							backgroundColor: 'purple',
+							color: 'white',
+							padding: [5, 10]
+						}
+					}
+				},
 				indicator: [
-					{name:'lover', max: 1, color: 'pink', },
-					{name:'enemy', max: 10, color: 'red', },
-					{name: 'friends', max: 10, color: 'blue',},
+					{name:'发展潜能', max: 100},
+					{name:'考核', max: 100, },
+					{name: '客户经营', max: 100, },
+					{name: '客群拓展', max: 100,},
+					{name: '学习', max: 100,},
 				],
+				
 			},
 			series: [
 				{
 					type: 'radar',
-					name: 'mine',
+					name: '员工画像',
 					label: {
 						show: false	,
 					},
 					data:[
 						{
-							value: [1, 2, 4],							
-							name: 'mine',
-							symbol: 'circle',
-							areaStyle: {
-								color: "lightblue",
-								opacity: 0.6,
-								//shadowColor: 'rgba(0, 0, 0, 0.8)',
-								//shadowBlur: 10,
-							},
-							tooltip: {
-								formatter: "{b0}<br/>{b1}<br/>{b2}",
-							},
-						},
-						{
-							value: [0, 4, 4],
-							name: 'mine2'
+							value: [80, 70, 50, 90, 60],	
 						}
 					],
-				},
-				{
-					type: 'radar',
-					name: 'mine2',
-					label: {
-						show: false	,
+					areaStyle: {
+						color: "rgba(43,105,206,0.4)",
+						opacity: 0.4,
 					},
-					data:[
-						{
-							value: [0.5, 5, 2],							
-							name: 'mine2',
-							symbol: 'circle',
-							areaStyle: {
-								color: "purple",
-								opacity: 0.6,
-								//shadowColor: 'rgba(0, 0, 0, 0.8)',
-								//shadowBlur: 10,
-							},
-							
-						},
-						
-
-					],
+					lineStyle: {
+						color: "#2B69CE"
+					},
+					symbol: "circle",
 				},
-				
 			],
            
         };

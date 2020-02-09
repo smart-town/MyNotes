@@ -27,7 +27,7 @@ class ScpCopy(CopyBasic):
 
 class LocalCopy(CopyBasic):
     def doCopy(self):
-        print("do local copy %s -> %s" % (self.source, self.destination))
+        print("DO LOCAL COPY %s -> %s" % (self.source, self.destination))
     def execute(self):
         self.doCopy()
 
