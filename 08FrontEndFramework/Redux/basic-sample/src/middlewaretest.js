@@ -83,14 +83,14 @@ store.dispatch(addTodo("You should have a goal"))
 
 //以上，替换以前的 dispatch，目标是为了以后每一个 middleware 都可以调用前一个 middleware 包装过的 dispatch，从而将 middleware 串联起来，不过还有另外一种方式实现这种调用效果，可以让 middleware 以方法参数的形式接收一个 next() 方法而不是通过 store 实例获取
 
-function logger(store){
-    return function wrapLog(next){
-        return function dispatchAndLog(action){
-            console.log('[release2]dispatching..',action);
-            let result = next(action)
-            console.log('[release2]next state..',store.getState());
-            return result;
-        }
-    }
-}
+// function logger(store){
+//     return function wrapLog(next){
+//         return function dispatchAndLog(action){
+//             console.log('[release2]dispatching..',action);
+//             let result = next(action)
+//             console.log('[release2]next state..',store.getState());
+//             return result;
+//         }
+//     }
+// }
 

@@ -1,19 +1,16 @@
 "use strict";
 
-var _store = require("./store");
+var _redux = require("redux");
+
+var _reducers = _interopRequireDefault(require("./reducers"));
 
 var _actions = require("./actions");
 
-console.log(_store.store.getState());
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var unsubscribe = _store.store.subscribe(function () {
-  return console.log(_store.store.getState());
-});
-
-_store.store.dispatch((0, _actions.addTodo)("cherry"));
-
-_store.store.dispatch((0, _actions.addTodo)("cherry2"));
-
-_store.store.dispatch((0, _actions.toggleTodo)(1));
-
-unsubscribe();
+var store = (0, _redux.createStore)(_reducers["default"]);
+console.log(store.getState());
+store.dispatch((0, _actions.addTodo)("Learn about redux"));
+console.log(store.getState());
+store.dispatch((0, _actions.toggleTodo)(0));
+console.log(store.getState());

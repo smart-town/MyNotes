@@ -14,7 +14,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 //export let store = createStore(todoApp)
 //异步测试
-var loggerMiddleware = (0, _reduxLogger.createLogger)();
-var store = (0, _redux.createStore)(_reducers["default"], (0, _redux.applyMiddleware)(_reduxThunk["default"], loggerMiddleware));
-store.dispatch((0, _actions.selectSubreddit)('testSubreddit'));
-store.dispatch((0, _actions.fetchPosts)('testjune'));
+// const loggerMiddleware = createLogger();
+var store = (0, _redux.createStore)(_reducers["default"] // applyMiddleware(
+//     thunkMiddleware,
+//     loggerMiddleware,
+// )
+); // store.dispatch(selectSubreddit('testSubreddit'))
+// store.dispatch(fetchPosts('testjune'))

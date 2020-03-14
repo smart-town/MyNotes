@@ -7,14 +7,14 @@ import {selectSubreddit,fetchPosts} from './actions'
 //export let store = createStore(todoApp)
 
 //异步测试
-const loggerMiddleware = createLogger();
+// const loggerMiddleware = createLogger();
 const store=createStore(
     todoApp,
-    applyMiddleware(
-        thunkMiddleware,
-        loggerMiddleware,
-    )
+    // applyMiddleware(
+    //     thunkMiddleware,
+    //     loggerMiddleware,
+    // )
 )
 
-store.dispatch(selectSubreddit('testSubreddit'))
-store.dispatch(fetchPosts('testjune'))
+// store.dispatch(selectSubreddit('testSubreddit'))
+// store.dispatch(fetchPosts('testjune'))

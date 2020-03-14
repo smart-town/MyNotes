@@ -9,6 +9,8 @@ var _redux = require("redux");
 
 var _actions = require("./actions");
 
+var _utils = require("./utils");
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -20,16 +22,19 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 var SHOW_ALL = _actions.VisibilityFilters.SHOW_ALL;
+var logger = new _utils.Logger("REDUCER", true);
 
 function visibilityFilter() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SHOW_ALL;
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  logger.log("visibilityFilter-reducer:", action);
 
   switch (action.type) {
     case _actions.SET_VISIBILITY_FILTER:
       return action.filter;
 
     default:
+      logger.log("visibilityFilter default...", action);
       return state;
   }
 }
@@ -37,6 +42,7 @@ function visibilityFilter() {
 function todos() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  logger.log("todos-reducer:", action);
 
   switch (action.type) {
     case _actions.ADD_TODO:
@@ -57,6 +63,7 @@ function todos() {
       });
 
     default:
+      logger.log("todos-reducer default...", action);
       return state;
   }
 }
@@ -121,9 +128,9 @@ function postsBySubreddit() {
 
 var todoApp = (0, _redux.combineReducers)({
   visibilityFilter: visibilityFilter,
-  todos: todos,
-  postsBySubreddit: postsBySubreddit,
-  selectedsubreddit: selectedsubreddit
+  todos: todos // postsBySubreddit,
+  // selectedsubreddit,
+
 });
 var _default = todoApp;
 exports["default"] = _default;
