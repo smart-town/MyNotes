@@ -11,7 +11,7 @@ import {
 } from './actions'
 import { Logger } from './utils';
 const { SHOW_ALL } = VisibilityFilters
-const logger = new Logger("REDUCER", true)
+const logger = new Logger("REDUCER", false)
 function visibilityFilter(state = SHOW_ALL, action) {
   logger.log("visibilityFilter-reducer:", action);
   switch (action.type) {

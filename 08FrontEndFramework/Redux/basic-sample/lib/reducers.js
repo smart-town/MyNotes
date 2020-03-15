@@ -22,7 +22,7 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 var SHOW_ALL = _actions.VisibilityFilters.SHOW_ALL;
-var logger = new _utils.Logger("REDUCER", true);
+var logger = new _utils.Logger("REDUCER", false);
 
 function visibilityFilter() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SHOW_ALL;
