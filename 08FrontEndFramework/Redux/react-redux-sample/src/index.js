@@ -11,7 +11,7 @@ let App = (props) => {
     console.log(`[index] ${JSON.stringify(props)}`)
     return (
         <div>
-            {props.name ? props.name : 'defaultName'}<br />
+            {props.header ? props.header : 'defaultName'}<br />
             <Header title={props.header}></Header>
             <SetEntry {...props}/>
             <Footer title={props.footer}/>

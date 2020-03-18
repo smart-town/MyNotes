@@ -9,18 +9,22 @@ import {
   REQUEST_POSTS,
   RECEIVE_POSTS,
 } from './actions'
+import { Logger } from './utils';
 const { SHOW_ALL } = VisibilityFilters
-
+const logger = new Logger("REDUCER", false)
 function visibilityFilter(state = SHOW_ALL, action) {
+  logger.log("visibilityFilter-reducer:", action);
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
       return action.filter
     default:
+      logger.log("visibilityFilter default...", action)
       return state
   }
 }
 
 function todos(state = [], action) {
+  logger.log("todos-reducer:", action)
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -40,6 +44,7 @@ function todos(state = [], action) {
         return todo
       })
     default:
+      logger.log("todos-reducer default...", action)
       return state
   }
 }
@@ -90,8 +95,8 @@ function postsBySubreddit(state = {}, action) {
 const todoApp = combineReducers({
   visibilityFilter,
   todos,
-  postsBySubreddit,
-  selectedsubreddit,
+  // postsBySubreddit,
+  // selectedsubreddit,
 })
 
 export default todoApp
