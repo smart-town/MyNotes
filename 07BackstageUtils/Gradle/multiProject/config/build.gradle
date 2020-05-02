@@ -1,0 +1,4 @@
+defaultTasks "config"
+task config(dependsOn: "roottask") {
+    println "CONFIG"
+}

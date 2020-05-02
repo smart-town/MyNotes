@@ -3,7 +3,7 @@
 <xs:element name="计划">
 <xs:complexType >
     <xs:sequence>
-        <xs:element name="类型" type="xs:string"/>
+        <xs:element name="类型" type="xs:number"/>
         <xs:element name="执行人" type="xs:string"/>
     </xs:sequence>
 </xs:complexType>

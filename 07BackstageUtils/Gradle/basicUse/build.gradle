@@ -1,0 +1,40 @@
+defaultTasks 'main'
+
+4.times {
+    counter -> 
+        task "task$counter" {
+            doLast {
+                println "This is task$counter speaking, test generate task dynamically."
+            }
+        }
+}
+task hello {
+    doLast {
+        println "Hello, Basic Task"
+    }
+}
+task upper {
+    doLast {
+        4.times {print "$it"}
+        println ""
+    }
+}
+task main(dependsOn: "upper") {
+    doLast {
+        println "This is main task, it has been setted as default task, and it use dependsOn"
+    }
+}
+upper.doFirst {
+    println "User API Add Some Info in 'upper' task"
+}
+upper.doLast {
+    println "Test A Function Define & Use"
+    fileList(".").each {
+        File file -> 
+            println ">>>Find File [$file.name]"
+    }
+}
+
+File[] fileList(String dir) {
+    file(dir).listFiles({file -> file.isFile() } as FileFilter).sort()
+}

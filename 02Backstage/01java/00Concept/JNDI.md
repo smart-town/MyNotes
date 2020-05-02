@@ -2,72 +2,51 @@
 
 ## 认识
 
-Java 命名与目录接口。Java Naming and Directory Interface。
+Java 命名与目录接口。Java Naming and Directory Interface。命名服务将名称和对象关联起来，使得读者可以用名称访问对象，目录服务是一种命名服务，在这种服务里，对象不但有名称，还有属性。
 
-## 没有 JNDI 时
+命名与目录服务使得读者可以集中存储共有信息。这一点在网络应用中非常重要，因为这样可以使得应用更加协调，更容易管理。如可以将打印机设置存储在目录服务中，以便被与打印机有关的应用使用。
 
-程序员开发时，知道要开发访问 MySQL 数据库的应用，于是将一个对 MySQL JDBC 驱动程序类的引用进行编码：
+在一个企业中，命名服务为读者的应用程序在网络上定位对象提供了一种方法，一个命名服务将对象和名称联系在了一起，并且可以通过他们指定的名称找到相应的对象。
 
-```java
-Connection conn = null;
-try {
-    Class.forName("com.mysql.jdbc.Driver", true, Thread.currentThread().getContextClassLoader());
-    conn = DriverManager.getConnection("jdbc:mysql://database?user=xxx&password=xxx");
+JNDI 是 Java 命名和目录接口，是一个为 Java 应用车呢光绪提供命名服务的应用程序编程接口。它为开发人员提供了查找和访问各种命名和目录服务的通用、统一的接口。JNDI 包含了大量的命名和目录服务，它使用通用接口来访问不同种类的服务，可以同时连接到多个命名或目录服务上并建立逻辑关联。
 
-    //使用 conn 并进行 SQL 操作
+### 命名服务
 
-    conn.close();
-} catch(Exception e){
-    e.printStackTrace() ;
-} finally{
-    if(conn != null){
-        try{conn.close();}
-        catch(SQLException e){}
+命名服务是一种服务，它提供了为给定数据集创建一个标准名字的能力。允许将名称同 Java 对象或者资源关联起来，而不必指出对象或资源的物理 ID。这类似字典结构，该结构中键映射到值。如在 Internet 上的域名服务就是提供将域名映射到 IP 地址的命名服务。
 
-    }
-}
-```
+其实所有的命名服务都提供 DNS 这种基本功能，即一个系统向命名服务注册，命名服务提供一个值到另一个值得映射。然后另一个系统访问命名服务就可以取得映射信息，这种交互关系对于分布式企业应用显得非常重要。
 
-这样做存在的问题在于，数据库服务器的名称、用户名、口令都会改变，由此引发 JDBC URL 需要修改。数据库可能需要修改为别的产品。原配置的连接池参数可能需要调整等
+Java 中基本的名字操作包含在`Context`接口中。
 
-程序员不应该关心，具体的数据库后台，URL 是多少等。编写的程序应该没有对 JDBC 程序的引用。
+### 目录服务 
 
-## 有了 JNDI 的做法
+目录服务是一种特殊类型的数据库，与 SQL Server、Oracle 等关系型数据库相反，构造目录服务是为了处理基于行为的事务，并且使用一种关系信息模型。目录服务将命名服务的概念进一步引申为提供具有层次结构的信息库，这一信息库除了包含一对一的关系外，还有信息的层次结构。对于目录服务而言，这种层次结构通常用于优化搜索操作，并且也可以按照实际情况进行分布或跨网络复制。
 
-在配置文件中配置数据源：如 JBoss 中 mysql-ds.xml:
+一个目录服务通常拥有一个名字服务，如电话簿就是一个典型的目录服务，一般先在电话簿中找到相关人名，再找到这个人的电话号码。
 
-```xml
-<dataSources>
-    <local-tx-datasource>
-        <jndi-name>MySqlDS</jndi-name>
-        <connection-url>jdbc:mysql://localhost:3306/lw</connection-url>
-        <driver-class>com.mysql.jdbc.Driver</driver-class>
-        <user-name>root</user-name>
-        <password>password</password>
-    </local-tx-datasource>
-</dataSources>
-```
+每一种目录服务都可以存储有关用户名、用户密码、用户组、以太网地址、IP 地址等信息。它所支持的信息和操作会因为所使用的目录服务的不同而不同。
 
-在程序中引用数据源
+这就是 JNDI 的起源，就像 JDBC 一样，JNDI 充当不同名称和目录服务的通用 API 或者说是前端，然后使用不同的后端适配器来连接实际服务。JNDI 是 J2EE 中一个完整的组件，它支持通过单一的方法访问不同的、新的和已经存在的服务的方法。这种支持允许任何服务提供商执行通过标准服务提供商(SPI)协定插入 JNDI 框架。
 
-```java
-Connection conn = null;
-try {
-    Context ctx = new InitialContext() ;
-    Object dataSourceRef = ctx.lookUp("java:MySqlDS");
-    conn = (DataSource)dataSourceRef.getConnection() ;
-    ...
-} catch(Exception e){
-    ...
-} finally {...}
-```
+基本的目录服务操作包含在`DirContext`接口中。
 
-虽然代码相似但是现在的程序可以不必关心具体的 JDBC 参数了。
+## LDAP
 
-## JNDI 的扩展
+`Lightweight Directory Access Protocol`，轻量级目录访问协议。它是目前最流行的目录协议，与平台无关。Java 通过`LDAP API`可以直接使用`LDAP`，或者可以通过`JNDI`使用`LDAP`。其定义客户应该如何访问服务器中的数据，并不指定数据应该如何存储在服务器上。
 
-JNDI 在满足了数据源配置的要求的基础上，还进一步扩充了作用：所有与系统外部的资源的引用，都可以通过 JNDI 定义和引用。
+## 使用 JNDI
 
-所以在 J2EE 规范中，J2EE 的资源并不限于 JDBC 数据源，引用的类型有很多，其中包括资源引用、环境实体、EJB 引用等。
-
-J2EE 的规范要求所有 J2EE 容器都要提供 JNDI 规范的实现，JNDI 在 J2EE 中的角色就是交换机。J2EE 组件在运行期间间接地查找其他组件、资源或者服务的通用机制，在多数情况下，提供 JNDI 供应者的容器可以充当有限的数据存储。这样管理员就可以设置应用程序的执行属性，并让其他应用程序引用这些属性。JNDI 在 J2EE 应用程序中的主要角色就是提供间接层，这样组件就可以发现所需要的资源，而不用了解这些间接性。
+### JNDI 提供者
+不使用服务提供者就不能用 JNDI，一个服务提供者就是一组 Java 类的集合，支持开发者同目录服务进行通信。类似 JDBC驱动程序和数据库之间的通信。能够用于 JNDI 的服务提供者必须实现 Context 或 DirectoryContext`。
+### JNDI 包
+- javax.naming
+- javax.naming.direcotry
+- javax.naming.event
+- javax.naming.ldap
+- javax.naming.spi
+### 常用 JNDI 操作
+- `void bind(sName, object)` 将名称同对象关联
+- `rebind`
+- `unbind`
+- `lookup`
+- `rename`

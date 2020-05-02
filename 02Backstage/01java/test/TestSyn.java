@@ -16,6 +16,7 @@ public class TestSyn {
             try {
                 TestSyn.mylock.lock();
                 account.setTotal(account.getTotal() + 1000);
+				System.out.printf("Thead %s Account Total: %d \n", Thread.currentThread().getName(), account.getTotal());
             } finally {
                 TestSyn.mylock.unlock();
             }
@@ -30,6 +31,7 @@ public class TestSyn {
             System.out.println(Thread.currentThread() + "Begin subtract...");
             try {
                 TestSyn.mylock.lock();
+				System.out.printf("Thead %s Account Total: %d \n", Thread.currentThread().getName(), account.getTotal());
                 account.setTotal(account.getTotal() - 1000);
             } finally {
                 TestSyn.mylock.unlock();
@@ -42,16 +44,13 @@ public class TestSyn {
             System.out.println(Thread.currentThread() + ":" + account);
         };
 
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 600; i++) {
             if (i % 2 == 0) {
                 new Thread(r1).start();
             } else {
                 new Thread(r2).start();
             }
         }
-
-        Thread.sleep(5000);
-        System.out.println("\n========\n"+account) ;
     }
 }
 

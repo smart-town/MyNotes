@@ -95,6 +95,10 @@ BinaryData | 二进制数据
 大于 | `{key:{$gt:value}}` | .
 不等于 | `{key:{$ne:value}}` |.
 
+#### 排序
+
+`sort({"key": 1/-1})`，默认 1 表示升序，`-1`表示降序。
+
 #### And
 
 在 find() 方法中传入多个键，并且以逗号分隔。如`db.mycol.find({key:value,key2:value2})`此时 mongo 将其看作`AND`条件

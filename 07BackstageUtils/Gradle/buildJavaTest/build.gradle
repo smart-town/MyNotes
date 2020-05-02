@@ -1,0 +1,16 @@
+defaultTasks "mytest"
+apply plugin: "java"
+
+
+def name = "HHGG"
+def testFunc() {
+    println "This is testFUNC"
+}
+testBlock {
+    testFunc()
+}
+task mytest {
+    doLast {
+        println name
+    }
+}
