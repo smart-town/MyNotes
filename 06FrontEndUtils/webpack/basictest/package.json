@@ -1,0 +1,11 @@
+{
+  "name": "basictest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --config config/basic.js"
+  },
+  "author": "luhha",
+  "license": "MIT"
+}

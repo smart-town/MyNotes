@@ -13,7 +13,7 @@
 
 ### ListableBeanFactory
 
-继承于`BeanFactory`接口，其由可以枚举自身所有`bean`实例的`bean`工厂来实现，而非根据请求按照名称逐一进行bean`查找。预加载其所有`bean`定义的`BeanFactory`可以实现该接口。如基于`XML`的工厂。
+继承于`BeanFactory`接口，其由可以枚举自身所有`bean`实例的`bean`工厂来实现，而非根据请求按照名称逐一进行`bean`查找。预加载其所有`bean`定义的`BeanFactory`可以实现该接口。如基于`XML`的工厂。
 
 该接口中的方法将只关系该工厂中的`bean`定义，它们将忽略任何由其他方式注册的单例`bean`，如`ConfigurableBeanFactory`中`registerSingleton`注册的`bean`。除了`getBeanNamesOfType`和`getBeansOfType`这两个方法，他们也会检查这类手动注册的单例。当然，`Bean`工厂的`getBean`方法也允许透明地访问这类特殊地`Bean`。
 
@@ -49,3 +49,5 @@
 
 ### Environment
 `EnvironmentCapable`接口提供了`Environment`的引用，关于`Environment`本身如何认识：[Environment](./Environment.md)
+
+## 核心方法
