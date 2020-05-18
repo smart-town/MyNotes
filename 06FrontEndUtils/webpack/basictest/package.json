@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --config config/basic.js"
+    "config": "webpack --config config/basic.js",
+    "split": "webpack --config config/split.js"
   },
   "author": "luhha",
   "license": "MIT"

@@ -35,8 +35,9 @@ ui
 **/bootstrap-4.0.0-dist/**/*min.*
 
 node_modules
-dist
-!dist/index.html
+**/dist/
+
+#!**/webpack/basictest/dist/index.html
 **/TypeScript/test/**/*.js*
 
 build

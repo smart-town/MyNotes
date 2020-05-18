@@ -22,6 +22,9 @@
     "cross-fetch": "^3.0.4",
     "html-webpack-plugin": "^3.2.0",
     "loadsh": "0.0.4",
-    "react": "^16.12.0"
+    "react": "^16.12.0",
+    "request": "^2.88.2",
+    "request-promise-any": "^1.0.8",
+    "webpack-merge": "^4.2.2"
   }
 }
