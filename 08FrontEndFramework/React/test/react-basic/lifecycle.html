@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeCycle</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        class LifeCycle extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    name: 'hhg',
+                }
+            }
+
+            setName = () => {
+                this.setState({
+                    name: 'cherry~'
+                })
+            }
+
+            componentDidMount() {
+                console.log('lifecycle didmount')
+                setTimeout(this.setName.bind(this), 1000);
+            }
+
+            render() {
+                console.log('lifecycle render')
+                return (
+                    <div>LifeCycle-{this.state.name}</div>
+                )
+            }
+        }
+        class MyPanel extends React.Component {
+            render() {
+                return (
+                    <div>
+                       <LifeCycle/>
+                       <br/> OKK
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<MyPanel/>, document.querySelector("#root"));
+    </script>
+</body>
+</html>
