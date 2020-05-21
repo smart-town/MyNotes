@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const request = require('request')
+const request = require('request-promise-any')
 
 const dirName = path.join(__dirname, 'dist')
 if (!fs.existsSync(dirName))
@@ -17,23 +17,25 @@ const decodeStr = (data, encode='base64') => {
 	return (Buffer.from(data, encode)).toString();
 }
 
+const dealMsg = (responseData) => {
+	console.log(`dealMsg Func call over`);
+	let responseDataObj = JSON.parse(responseData);
+	if (!Array.isArray(responseDataObj))
+	{
+		let contentData = decodeStr(responseDataObj.content)
+		let filePath = path.join(dirName, fileName);
+		console.log(`file ${responseDataObj.name} has been downloaded!`);
+		fs.writeFileSync(filePath, contentData)
+	} else {
+		responseDataObj.map((v,i) => (i+1) + '\t' + v.type + '\t' + v.name).forEach(v => {console.log(v)});
+	}
+}
+
 let owner = 'lhhcherry'
 let repo = 'TestCode'
 let filePath = 'README.md'
 const urlBase = 'https://gitee.com/api/'
-let url = `${urlBase}v5/repos/${owner}/${repo}/contents/`
-console.log(url)
-request(url, (error, response, body) => {
-	if (!error)
-	{
-		let bodyObj = JSON.parse(body);
-		if (!Array.isArray(bodyObj))
-		{
-			let contentData = decodeStr(bodyObj.content)
-			fs.writeFileSync(path.join(dirName, fileName), contentData)
-		} else {
-			bodyObj.map((v,i) => (i+1) + '\t' + v.type + '\t' + v.name).forEach(v => {console.log(v)});
-		}
-	}
-})
+let url = `${urlBase}v5/repos/${owner}/${repo}/contents/${filePath}`
+
+request(url).then(dealMsg)
 //console.log(fileSha)

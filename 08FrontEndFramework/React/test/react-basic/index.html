@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <div id="like_button"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script>
+        const likeButton = document.querySelector("#like_button");
+        const e = React.createElement;
+        class myButton extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {liked: false};
+            }
+            render() {
+                if (this.state.liked) {
+                    return 'You liked this';
+                }
+                return e(
+                    'button',
+                    {onClick: () => this.setState({liked: true})},
+                    'Like',
+                )
+            }
+        }
+        ReactDOM.render(e(myButton), likeButton)
+    </script>
+</body>
+</html>
