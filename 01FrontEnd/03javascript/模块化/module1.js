@@ -30,3 +30,4 @@ var module3 = (function(mod) {
 		console.log('this is module3.m3 Func')
 	}
 })()
+
