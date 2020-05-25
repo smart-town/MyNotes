@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>life</title>
+    <style>
+        .show {
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src='react.development.js'></script>
+    <script src='react-dom.development.js'></script>
+    <script src='babel.min.js'></script>
+    <script type='text/babel'>
+        class LifeCycle extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    date: new Date(),
+                }
+            }
+            componentDidMount() {
+                console.log('did mount...')
+                this.timerID = setInterval(
+                    () => this.tick(),
+                    1000,
+                )
+            }
+            componentWillUnmount() {
+                console.log('unmount...')
+                clearInterval(this.timerID);
+            }
+            tick = () => {
+                this.setState({date: new Date()})
+            }
+            render() {
+                return <div>{this.state.date.toLocaleTimeString()}</div>
+            }
+        }
+        class MyTestPanel extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    flag: true,
+                }
+            }
+            changeStatus = () => {
+                console.log('changeStatus:', this.state.flag)
+                this.setState({flag: !this.state.flag})
+            }
+            render() {
+                return (
+                    <div>
+                        { this.state.flag && <LifeCycle/> }
+                        <button onClick={this.changeStatus}>test</button>
+                    </div>
+                )
+            }
+        }
+        const rootElement = document.querySelector("#root");
+        ReactDOM.render(<MyTestPanel/>, rootElement);
+    </script>
+</body>
+</html>
