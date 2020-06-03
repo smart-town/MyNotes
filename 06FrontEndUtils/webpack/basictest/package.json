@@ -2,9 +2,10 @@
   "name": "basictest",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "config": "webpack --config config/basic.js",
+    "hmr": "webpack-dev-server --config config/hmr.js",
+    "loader": "webpack --config config/loader.js",
+    "basic": "webpack --config config/basic.js",
     "split": "webpack --config config/split.js"
   },
   "author": "luhha",

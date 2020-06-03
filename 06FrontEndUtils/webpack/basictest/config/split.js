@@ -6,5 +6,11 @@ module.exports = merge(common, {
 	entry: path.join(__dirname, '../src/split.js'),
 	output: {
 		filename: 'split.js',
+	},
+	optimization: {
+		splitChunks: {
+			chunks: 'all',
+			minSize: 1,
+		}
 	}
 })

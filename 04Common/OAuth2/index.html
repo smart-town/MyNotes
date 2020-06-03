@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestOAuth2</title>
+</head>
+<body>
+	<ul>
+		<li><button id="code">授权码方式</button></li>
+		<li><button id="implicit">隐藏方式</button></li>
+	</ul>
+    
+    <div id="content"></div>
+    <script>
+        let idButton = document.getElementById("code");
+		let implicitButton = document.getElementById("implicit");
+
+		const authedRights = ["user_info","projects","pull_requests"];
+        const authUrl = 'https://gitee.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code';
+        const authUrlWithState = 'https://gitee.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&state={state}';
+		const implicitAuthUrl = 'https://gitee.com/oauth/authorize?response_type=tokenclient_id={client_id}&redirect_uri={redirect_uri}';
+		const authedUrl = 'https://gitee.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&state={state}&response_type=code&scope='+encodeURIComponent(authedRights.join(" "));
+		const getAccessTokenUrl = 'https://gitee.com/oauth/token?grant_type=authorization_code&code={code}&client_id={client_id}&redirect_uri={redirect_uri}&client_secret={client_secret}';
+
+        const params = {
+            client_id: 'e8db1dcfd00bf405429813d2703cbf10f99b4ae204fcf01385dfb2e484e8d3be',
+			client_secret: 
+            redirect_uri: 'http://localhost:8000/'
+        }
+        function dealUrl(urlParams, needDealUrl) {
+            let resultUrl = needDealUrl;
+            Object.keys(urlParams).forEach(param => {
+                resultUrl = resultUrl.replace(`${param}={${param}}`,`${param}=${urlParams[param]}`)
+            })
+            console.log("dealed url:" + resultUrl);
+            return resultUrl;
+        }
+
+		// 检测是否已授权登录..这里默认已登录
+		function checkOrAuthorize() {
+			let hasAuthorized = localStorage.getItem("gitee") && true;
+			return true;
+		}
+		
+		// 页面加载完成后自定检查是否是授权后的回调url（即是否带有参数）
+		function authCallbackOnLoaded() {
+			if (location.search) {
+                let searchParams = new URLSearchParams(location.search)
+                let keyArr = ["code", "state", "token"];
+				if (searchParams.get("code"))
+				{
+					console.log("%clogin success","color: green;");
+					localStorage.setItem("code",searchParams.get("code"));
+				}
+            }
+		}
+
+		// 成功授权回调函数
+		function afterAuthorize() {
+			console.log("%c begin get gitee info.", "background:blue;color:white;padding:6px 4px;border-radius:4px");
+			if (checkOrAuthorize())
+			{
+				let code = localStorage.getItem("code");
+				// TODO 这里的 redirect_url 应该是需要暴露出一个公网的接口以供处理...
+			}	
+
+		}
+
+		function getAccessToken() {
+			fetch('
+		}
+
+        idButton.onclick = () => {
+			let authUrlTemplate = authUrlWithState;
+			if (checkOrAuthorize())
+			{
+				authUrlTemplate = authedUrl;
+			}
+            const authUrlDealed = dealUrl({...params, state: 'authorize'}, authUrlTemplate);
+            window.location.href = authUrlDealed;
+        }
+		implicitButton.onclick = () => {
+			const authUrlDealed = dealUrl({...params, state: 'hhg'}, implicitAuthUrl);
+			window.location.href = authUrlDealed;
+		}
+        window.onload = function() {
+            console.log("%cLOAD OVER", "background:purple;color:white;padding:6px 4px;border-radius:4px;")
+            authCallbackOnLoaded();
+			afterAuthorize();
+        }
+    </script>
+</body>
+</html>
