@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TestGeo</title>
+	<meta name="viewport" content="width=device-width">
+</head>
+<body>
+<button onclick="test()">授予定位</button>
+<div>
+	<header>get content:</header>
+	<pre id="content"></pre>
+
+</div>
+<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
+<script>
+	let option = {enableHighAccuracy: true, maximumAge: 0, timeout: 2000}
+	let contentPre = document.getElementById("content")
+	var result={};
+	function test(){
+		navigator.geolocation.getCurrentPosition(showPosition, showError, option);
+
+	}
+	function showPosition(coords) {
+		console.log("posi:", coords);
+		result = coords;
+		contentPre.innerHTML = "success!\n"+coords.accuracy	
+	}
+	function showError(err) {
+		console.log("err:", err);
+		result = err;
+		let errObj = {};
+		for (let key of ["code", "message"])
+		{
+			errObj[key] = err[key];
+		}
+		//console.log(errObj)
+		contentPre.innerHTML = "fail!\n"+JSON.stringify(errObj, null, 4);
+	}
+
+</script>
+</body>
+</html>
