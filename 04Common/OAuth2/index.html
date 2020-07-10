@@ -18,15 +18,17 @@
 
 		const authedRights = ["user_info","projects","pull_requests"];
         const authUrl = 'https://gitee.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code';
+
+		'https://open.weixin.qq.com/connect/qrconnect?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect'
         const authUrlWithState = 'https://gitee.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&state={state}';
 		const implicitAuthUrl = 'https://gitee.com/oauth/authorize?response_type=tokenclient_id={client_id}&redirect_uri={redirect_uri}';
 		const authedUrl = 'https://gitee.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&state={state}&response_type=code&scope='+encodeURIComponent(authedRights.join(" "));
-		const getAccessTokenUrl = 'https://gitee.com/oauth/token?grant_type=authorization_code&code={code}&client_id={client_id}&redirect_uri={redirect_uri}&client_secret={client_secret}';
+		
 
         const params = {
             client_id: 'e8db1dcfd00bf405429813d2703cbf10f99b4ae204fcf01385dfb2e484e8d3be',
-			client_secret: 
-            redirect_uri: 'http://localhost:8000/'
+            //redirect_uri: 'http://localhost:8000/'
+			redirect_uri: 'http://47.114.55.83:8001/gitapp/gitcallback'
         }
         function dealUrl(urlParams, needDealUrl) {
             let resultUrl = needDealUrl;
@@ -65,10 +67,6 @@
 				// TODO 这里的 redirect_url 应该是需要暴露出一个公网的接口以供处理...
 			}	
 
-		}
-
-		function getAccessToken() {
-			fetch('
 		}
 
         idButton.onclick = () => {
