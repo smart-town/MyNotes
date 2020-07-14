@@ -180,3 +180,7 @@
 ```
 
 6. 关于具体的回答，似乎可以通过`https://zhihu.com/question/{qid}/{type}/{typeid}`访问对应回答
+
+7. 查看主题：`https://www.zhihu.com/api/v4/topics/19550228`
+
+8. 查看问题回答：`https://www.zhihu.com/api/v4/questions/{qid}/answers`，注意参数
