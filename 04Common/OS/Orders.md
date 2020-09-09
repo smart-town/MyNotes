@@ -53,3 +53,7 @@
 ## 查看进程信息
 
 - 查看某个进程的启动目录：获得进程号后执行：`ls -l /proc/pid/cwd`
+
+## 远程复制多个文件
+
+`scp username@remotehost:/path/directory/\{foo.txt,bar.txt\} .`
