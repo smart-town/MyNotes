@@ -9,3 +9,11 @@
 **强制刷新环境变量**: `refreshenv` (注意仅仅在 cmd 下生效)
 
 查看所有环境变量：`set`，查看指定的环境变量：`set varname`
+
+## 服务相关
+
+- 创建服务：`sc create servicename binPath=/path/service.exe`
+- 配置服务：`sc config servicename start=AUTO/DEMAND(手动)/DISABLED`
+- 开启服务：`net start servicename`
+- 关闭服务：`net stop servicename`
+- 删除服务：`sc delete servicename`
