@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PositionTest</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        article {
+            padding-top: 10px;
+        }
+        nav {
+            background: lightblue;
+            padding: 10px 15px;
+
+            position: sticky;
+            top: 0;
+        }
+        .content {
+            background: lightcyan;
+            height:110vh;
+        }
+    </style>
+</head>
+<body>
+    <article>
+    <nav>PositionTest</nav>
+    <section class="content"></section>
+    </article>
+
+    <article>
+        <nav>test2</nav>
+        <section class="content" style="background: lightgray">okk</section>
+    </article>
+</body>
+</html>
