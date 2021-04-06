@@ -13,6 +13,7 @@
 </head>
 <body>
     <div id="root1" v-if="seen" v-cloak>
+	<div :style=fubin>付斌</div>
         <span>{{message}}</span><button @click="showdata">showdata</button>
         <pre>
         <span>{{JSON.stringify(testData)}}</span>
@@ -54,6 +55,7 @@
             data: {
                 seen: true,
                 message: "cherry",
+				fubin: {color: 'red'},
                 testData: {
                     message: "ok",
                 }
@@ -61,6 +63,7 @@
             methods: {
                 showdata() {
                     alert(JSON.stringify(this.$data, null, 2))
+					this.fubin = {color: 'yellow'}
                 }
             },
             created: function(){
