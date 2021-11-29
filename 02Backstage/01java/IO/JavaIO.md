@@ -48,9 +48,10 @@ Java IO 包主要关注的是从原始数据源的读取以及输出原始数据
 - 读写对象
 
 
- | Byte Based Input | Output | Character Based Input | Output
---| ---------------- | ------ | -------------------- | ---------
+- | Byte Based Input | Output | Character Based Input | Output
+----------| ---------------- | ------ | -------------------- | ---------
 Basic | InputStream | OutputStream | Reader / InputStreamReader | Writer / OutputStreamWriter
+
 
 ### IO 类组合
 

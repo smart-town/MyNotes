@@ -11,7 +11,7 @@ public class ObserverJava extends Observable {
         MineDisplay m = new MineDisplay(o) ;
         for(int i = 0; i < 5; i++){
             Thread.sleep(1000) ;
-            System.out.println("The "+i+" th inform");
+            System.out.println("The "+i+"th inform");
             o.setChanged() ;
             o.notifyObservers(Math.round(Math.random()*100)+"") ;
             if(i == 3) {

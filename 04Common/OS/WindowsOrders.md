@@ -17,3 +17,7 @@
 - 开启服务：`net start servicename`
 - 关闭服务：`net stop servicename`
 - 删除服务：`sc delete servicename`
+
+## 开机自启动
+
+脚本放置到目录`C:\Users\smalltown\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`即可。
